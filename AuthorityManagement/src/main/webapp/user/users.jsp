@@ -40,15 +40,15 @@
 				showColumns : true,
 				showRefresh : true,
 				clickToSelect : true,
-				uniqueId : "user_uuid",
+				uniqueId : "userUuid",
 				columns : [ { checkbox : true, visible: true }, 
 							{ field : 'username', title : '姓名', width : 120, align : 'center' },
 							{ field : 'email', title : '邮箱', width : 200, align : 'center' },
 							{ field : 'mobile', title : '手机', width : 150, align : 'center' },
-							{ field : 'nice_name', title : '昵称', width : 130, align : 'center' },
-							{ field : 'organ.organ_name', title : '部门', width : 200, align : 'center' },
-							{ field : 'is_admin', title : '是否管理员' ,formatter : ifFormatter, width : 120, align : 'center'},
-							{ field : 'is_sun', title : '是否阳光用户',formatter : ifFormatter, width : 120 , align : 'center'},
+							{ field : 'niceName', title : '昵称', width : 130, align : 'center' },
+							{ field : 'organ.organName', title : '部门', width : 200, align : 'center' },
+							//{ field : 'is_admin', title : '是否管理员' ,formatter : ifFormatter, width : 120, align : 'center'},
+							//{ field : 'is_sun', title : '是否阳光用户',formatter : ifFormatter, width : 120 , align : 'center'},
 							{ field : 'modtime', title : '修改时间' ,formatter : dateFormatter, align : 'center'}
 						  ],
 				queryParams : function(params) {
@@ -67,7 +67,7 @@
 					toastr.info('请选择一条数据进行数据编辑操作!');
 					return;
 				}
-				window.parent.openIframe('${pageContext.request.contextPath}/user/updateUser.jsp?id=' + users[0].user_uuid);
+				window.parent.openIframe('${pageContext.request.contextPath}/user/updateUser.jsp?id=' + users[0].userUuid);
 			});			
 			
 			$('#btn_delete').click(function(){
@@ -77,7 +77,7 @@
 					toastr.info('请选择一条数据进行数据编辑操作!');
 					return;
 				}
-				window.parent.openModel('${pageContext.request.contextPath}/deleteModal.jsp?id=' + users[0].user_uuid + '&type=user');
+				window.parent.openModel('${pageContext.request.contextPath}/deleteModal.jsp?id=' + users[0].userUuid + '&type=user');
 			});			
 		});
 		window.parent.setMainDivHeight(0);

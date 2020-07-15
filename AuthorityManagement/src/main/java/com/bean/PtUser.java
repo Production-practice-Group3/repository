@@ -13,7 +13,7 @@ public class PtUser {
 
     private String mobile;
 
-    private String organUuid;
+    private Integer organUuid;//组织id
 
     private String niceName;
 
@@ -63,12 +63,12 @@ public class PtUser {
         this.mobile = mobile == null ? null : mobile.trim();
     }
 
-    public String getOrganUuid() {
+    public Integer getOrganUuid() {
         return organUuid;
     }
 
-    public void setOrganUuid(String organUuid) {
-        this.organUuid = organUuid == null ? null : organUuid.trim();
+    public void setOrganUuid(Integer organUuid) {
+        this.organUuid = organUuid ;
     }
 
     public String getNiceName() {

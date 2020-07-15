@@ -1,5 +1,8 @@
 package com.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import com.bean.PtRRoleOrgan;
 
 public interface PtRRoleOrganMapper {
@@ -14,4 +17,17 @@ public interface PtRRoleOrganMapper {
     int updateByPrimaryKeySelective(PtRRoleOrgan record);
 
     int updateByPrimaryKey(PtRRoleOrgan record);
+    
+    /**
+     * 获取分页岗位信息
+     * @return
+     */
+    List<PtRRoleOrgan> getRRoleOrgansByPage(HashMap<String, Integer> map);
+    
+    /**
+     * 获取数据总数
+     * @return
+     */
+    int getRRoleOrganCount();
+    
 }

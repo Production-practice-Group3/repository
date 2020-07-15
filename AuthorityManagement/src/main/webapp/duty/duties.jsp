@@ -32,8 +32,8 @@
 				clickToSelect : true,
 				uniqueId : "dutyId",
 				columns : [ { field : 'name', title : '岗位名称', width : 200},
-							{ field : 'organ.organ_name', title : '组织信息', width : 200},
-							{ field : 'role.role_name', title : '角色信息', width : 200},
+							{ field : 'organ.organName', title : '组织信息', width : 200},
+							{ field : 'role.roleName', title : '角色信息', width : 200},
 							{ field:'dutyId', title : '操作', width : 100, align : 'center', formatter : 
 								function actionFormatter(value, row, index) {
 									var result = '';

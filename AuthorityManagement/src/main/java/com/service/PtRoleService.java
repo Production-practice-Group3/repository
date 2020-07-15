@@ -1,18 +1,22 @@
 package com.service;
 
+
+import com.bean.PtPageBean;
 import com.bean.PtRole;
+import com.helpbean.RolesVO;
 
 public interface PtRoleService {
-	int deleteByPrimaryKey(Integer roleUuid);
-
-    int insert(PtRole record);
-
-    int insertSelective(PtRole record);
-
-    PtRole selectByPrimaryKey(Integer roleUuid);
-
-    int updateByPrimaryKeySelective(PtRole record);
-
-    int updateByPrimaryKey(PtRole record);
+	
+	//增加角色信息
+    int addPtRole(PtRole ptRole);
+    
+    //删除角色信息
+    int deletePtRole(int id);
+    
+    //更新角色信息
+    int updatePtRole(PtRole ptRole);
+    
+    //查询全部的角色信息
+    public PtPageBean<RolesVO> getRolesVO(int pageSize,int pageNumber);
 
 }

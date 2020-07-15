@@ -49,10 +49,10 @@
 				showColumns : true,
 				showRefresh : true,
 				clickToSelect : true,
-				uniqueId : "role_uuid",
-				columns : [ { field : 'role_id', title : '角色编码' },
-							{ field : 'role_name', title : '角色名称' },
-							{ field:'role_uuid', title : '操作', width : 300, align : 'center', formatter : 
+				uniqueId : "roleUuid",
+				columns : [ { field : 'roleId', title : '角色编码' },
+							{ field : 'roleName', title : '角色名称' },
+							{ field:'roleUuid', title : '操作', width : 300, align : 'center', formatter : 
 								function actionFormatter(value, row, index) {
 									var result = '';
 									result += '<a href="#" class="btn btn-sm" onclick="updateRole(\'' + value + '\')"><span class="fa fa-edit"></span>&nbsp;编辑</a>';

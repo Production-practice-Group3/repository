@@ -32,8 +32,7 @@
 					<label class="col-sm-4 control-label">组织信息</label>
 					<div class="col-sm-8">
 						<div class="input-group mb15">
-							<input id="parent_name" class="form-control" type="text" name="organ.organ_name" placeholder="请输入组织信息"/>
-							<input id="parent_uuid" type="hidden" name="organ.organ_uuid"/>
+							<input id="parent_name" class="form-control" type="text" name="organ.organUuid" placeholder="请输入组织信息"/>
 							<span class="input-group-addon" data-toggle="modal" data-target="#orgTree"><i class="fa fa-paper-plane"></i></span> 
 						</div>
 					</div>
@@ -42,8 +41,7 @@
 					<label class="col-sm-4 control-label">角色信息</label>
 					<div class="col-sm-8">
 						<div class="input-group mb15">
-							<input id="role_uuid" type="hidden" name="role.role_uuid"/>
-							<input class="form-control" id="role_name" name="role.role_name" placeholder="请输入角色名称">
+							<input class="form-control" id="role_name" name="role.roleUuid" placeholder="请输入角色名称">
 							<span class="input-group-addon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-align-justify"></i></span> 
 							<ul id="selectRole" class="dropdown-menu dropdown-menu-right">
 							</ul>

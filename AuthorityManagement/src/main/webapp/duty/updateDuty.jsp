@@ -33,8 +33,8 @@
 					<label class="col-sm-4 control-label">组织信息</label>
 					<div class="col-sm-8">
 						<div class="input-group mb15">
-							<input id="parent_name" class="form-control" type="text" name="organ.organ_name" placeholder="请输入组织信息"/>
-							<input id="parent_uuid" type="hidden" name="organ.organ_uuid"/>
+							<input id="parent_name" class="form-control" type="text" name="organ.organName" placeholder="请输入组织信息"/>
+							<input id="parent_uuid" type="hidden" name="organ.organUuid"/>
 							<span class="input-group-addon" data-toggle="modal" data-target="#orgTree"><i class="fa fa-paper-plane"></i></span> 
 						</div>
 					</div>
@@ -43,8 +43,8 @@
 					<label class="col-sm-4 control-label">角色信息</label>
 					<div class="col-sm-8">
 						<div class="input-group mb15">
-							<input id="role_uuid" type="hidden" name="role.role_uuid"/>
-							<input class="form-control" id="role_name" name="role.role_name" placeholder="请输入角色名称">
+							<input id="role_uuid" type="hidden" name="role.roleUuid"/>
+							<input class="form-control" id="role_name" name="role.roleName" placeholder="请输入角色名称">
 							<span class="input-group-addon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-align-justify"></i></span> 
 							<ul id="selectRole" class="dropdown-menu dropdown-menu-right">
 							</ul>
@@ -96,10 +96,10 @@
 			//初始化页面
 			$.get('${pageContext.request.contextPath}/duty/getDuty', {uuid : $('#dutyId').val()}, function (duty) {
 				$('#name').val(duty.name);
-				$('#parent_uuid').val(duty.organ.organ_uuid);
-				$('#parent_name').val(duty.organ.organ_name);
-				$('#role_uuid').val(duty.role.role_uuid);
-				$('#role_name').val(duty.role.role_name);
+				$('#parent_uuid').val(duty.organ.organUuid);
+				$('#parent_name').val(duty.organ.organName);
+				$('#role_uuid').val(duty.role.roleUuid);
+				$('#role_name').val(duty.role.roleName);
 			}, "json");
 			
 			$.get('${pageContext.request.contextPath}/role/getRoles2', {}, function (data) {

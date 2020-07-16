@@ -94,7 +94,7 @@
 			$.get('${pageContext.request.contextPath}/role/getRoles2', {}, function (data) {
 				var html = '';
 				for (var i = 0; i < data.length; i++) {
-					html += '<li><a href="#" id="' + data[i].role_uuid + '" onclick="chooseRole(this)">' + data[i].role_name + '</a></li>';
+					html += '<li><a href="#" id="' + data[i].roleUuid + '" onclick="chooseRole(this)">' + data[i].roleName + '</a></li>';
 				}
 				$('#selectRole').append(html);
 			}, "json");

@@ -70,25 +70,13 @@
   </update>
   
   
-  <insert id="addPtRole" parameterType="com.bean.PtRole">
-  	insert into pt_role (role_id,role_name)
-  	values (#{roleId},#{roleName});
-  </insert>
-  
-  <delete id="deletePtRole" parameterType="int">
-  	delete from pt_role 
-  	where role_uuid=#{role_uuid}
-  </delete>
-  
-  <update id="updatePtRole" parameterType="com.bean.PtRole">
-  	update pt_role
-  	set role_id=#{roleId},role_name=#{roleName}
-  	where role_uuid=#{roleUuid}
-  </update>
-  
   <select id="getRoleByPage" resultMap="BaseResultMap" parameterType="map">
   	select <include refid="Base_Column_List" /> 
   	from pt_role limit #{startIndex},#{pageSize}
+  </select>
+  
+  <select id="selectPtRole" resultMap="BaseResultMap" >
+  	select * from pt_role
   </select>
   
   <select id="getRoleCount" resultType="int">

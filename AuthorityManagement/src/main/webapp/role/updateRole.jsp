@@ -22,17 +22,17 @@
 		<!-- panel-heading -->
 		<div class="panel-body nopadding">
 			<form id="roleForm" method="post" class="form-bordered">
-				<input id="role_uuid" name="role_uuid" type="hidden" value="<%=request.getParameter("id")%>">
+				<input id="role_uuid" name="roleUuid" type="hidden" value="<%=request.getParameter("id")%>">
 				<div class="form-group">
 					<label class="col-sm-4 control-label">角色编码</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="role_id" name="role_id" placeholder="请输入角色编码">
+						<input type="text" class="form-control" id="role_id" name="roleId" placeholder="请输入角色编码">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-4 control-label">角色名称</label>
 					<div class="col-sm-8">
-						<input class="form-control" id="role_name" name="role_name" placeholder="请输入角色名称">
+						<input class="form-control" id="role_name" name="roleName" placeholder="请输入角色名称">
 					</div>
 				</div>
 				
@@ -62,8 +62,8 @@
 			//初始化页面
 			$.get('${pageContext.request.contextPath}/role/getRole', {uuid : $('#role_uuid').val()}, function (role) {
 				debugger;
-				$('#role_id').val(role.role_id);
-				$('#role_name').val(role.role_name);
+				$('#role_id').val(role.roleId);
+				$('#role_name').val(role.roleName);
 			}, "json");
 			
 		});

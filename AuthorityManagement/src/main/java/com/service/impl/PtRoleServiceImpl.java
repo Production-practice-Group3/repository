@@ -7,7 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bean.PtOrgan;
 import com.bean.PtPageBean;
+import com.bean.PtRRoleOrgan;
 import com.bean.PtRole;
 import com.dao.PtRoleMapper;
 import com.helpbean.DutiesVO;
@@ -22,17 +24,27 @@ public class PtRoleServiceImpl implements PtRoleService{
 
 	//增加角色信息
 	public int addPtRole(PtRole ptRole) {
-		return ptRoleMapper.addPtRole(ptRole);
+		PtRole ptRoles=new PtRole();
+		ptRoles.setRoleId(ptRole.getRoleId());
+		ptRoles.setRoleName(ptRole.getRoleName());
+		ptRoleMapper.insert(ptRoles);
+		return 1;
 	}
 
 	//删除角色信息
 	public int deletePtRole(int id) {
-		return ptRoleMapper.deletePtRole(id);
+		ptRoleMapper.deleteByPrimaryKey(id);
+		return 1;
 	}
 
 	//更新角色信息
 	public int updatePtRole(PtRole ptRole) {
-		return ptRoleMapper.updatePtRole(ptRole);
+		PtRole ptRoles=new PtRole();
+		ptRoles.setRoleUuid(ptRole.getRoleUuid());
+		ptRoles.setRoleId(ptRole.getRoleId());
+		ptRoles.setRoleName(ptRole.getRoleName());
+		ptRoleMapper.updateByPrimaryKey(ptRoles);
+		return 1;
 	}
 
 	//查询全部的角色信息(分页查询)
@@ -56,8 +68,22 @@ public class PtRoleServiceImpl implements PtRoleService{
 		pageBean.setTotal(total);//设置总数
 		return pageBean;
 	}
-
 	
+	//提供可以分配的角色
+	public List<PtRole> getRoles2(){
+		return ptRoleMapper.selectPtRole();
+	}
+	
+	//根据id获取角色信息
+	public PtRole getRole(int uuid) {
+		PtRole ptRole=new PtRole();
+		PtRole ptRoles=ptRoleMapper.selectByPrimaryKey(uuid);
+		ptRole.setRoleUuid(ptRoles.getRoleUuid());
+		ptRole.setRoleId(ptRoles.getRoleId());
+		ptRole.setRoleName(ptRoles.getRoleName());
+		return ptRole;
+	}
+
 	
 
 	

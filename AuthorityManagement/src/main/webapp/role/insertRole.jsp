@@ -25,13 +25,13 @@
 				<div class="form-group">
 					<label class="col-sm-4 control-label">角色编码</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="role_id" name="role_id" placeholder="请输入角色编码">
+						<input type="text" class="form-control" id="role_id" name="roleId" placeholder="请输入角色编码">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-4 control-label">角色名称</label>
 					<div class="col-sm-8">
-						<input class="form-control" id="role_name" name="role_name" placeholder="请输入角色名称">
+						<input class="form-control" id="role_name" name="roleName" placeholder="请输入角色名称">
 					</div>
 				</div>
 				<div class="form-group" style="text-align: center;">

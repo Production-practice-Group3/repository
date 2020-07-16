@@ -21,7 +21,7 @@
     select 
     <include refid="Base_Column_List" />
     from pt_organ
-    where organ_uuid = #{organUuid,jdbcType=INTEGER}
+    where organ_uuid = #{organUuid,jdbcType=INTEGER} and status='N'
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from pt_organ
@@ -150,4 +150,16 @@
       shortname = #{shortname,jdbcType=VARCHAR}
     where organ_uuid = #{organUuid,jdbcType=INTEGER}
   </update>
+  <select id="getParentName" resultType="String" parameterType="com.bean.PtOrgan">
+  	select organ_name from pt_organ
+  	where organ_uuid = #{parentUuid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPage" resultMap="BaseResultMap" parameterType="map">
+	select <include refid="Base_Column_List" /> 
+	from pt_organ where status='N'
+	limit #{startIndex},#{pageSize}
+  </select>
+  <select id="getOrganCount" resultType="int">
+    select count(*) from pt_organ;
+  </select>
 </mapper>

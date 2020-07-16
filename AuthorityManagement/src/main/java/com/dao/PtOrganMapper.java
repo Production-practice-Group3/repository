@@ -1,5 +1,8 @@
 package com.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import com.bean.PtOrgan;
 
 public interface PtOrganMapper {
@@ -14,4 +17,10 @@ public interface PtOrganMapper {
     int updateByPrimaryKeySelective(PtOrgan record);
 
     int updateByPrimaryKey(PtOrgan record);
+    
+    String getParentName(PtOrgan organ);
+    
+    List<PtOrgan> selectByPage(HashMap<String, Integer> map);
+    
+    int getOrganCount();
 }

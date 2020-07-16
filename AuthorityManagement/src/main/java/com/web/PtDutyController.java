@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bean.PtPageBean;
 import com.bean.PtRRoleOrgan;
+import com.dao.PtRRoleOrganMapper;
 import com.helpbean.DutiesVO;
 import com.service.PtDutyService;
 
@@ -75,5 +76,17 @@ public class PtDutyController {
 	public int remove(int id) {
 		int data=dutyService.remove(id);
 		return data;
+	}
+	
+	/**
+	 * 根据组织id查找岗位
+	 * @param organId
+	 * @return
+	 */
+	@RequestMapping(value="/getDutyByOrganId",method=RequestMethod.GET)
+	@ResponseBody
+	public List<PtRRoleOrgan> getDutyByOrganId(int organId){
+		List<PtRRoleOrgan> roleOrgans=dutyService.getDutyByOrganId(organId);
+		return roleOrgans;
 	}
 }

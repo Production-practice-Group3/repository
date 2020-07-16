@@ -205,7 +205,7 @@
 				var html = '';
 				for (var i = 0; i < data.length; i++) {
 					var duty = data[i];
-					html += '<div class="checkbox icheck-silver icheck-inline"><input type="checkbox" id="' + duty.dutyId + '" value="' + duty.dutyId + '" name="duties[' + i + '].dutyId" /><label for="' + duty.dutyId + '">' + duty.name + '</label></div>';
+					html += '<div class="checkbox icheck-silver icheck-inline"><input type="checkbox" id="' + duty.dutyid + '" value="' + duty.dutyid + '" name="duties[' + i + '].dutyId" /><label for="' + duty.dutyid + '">' + duty.name + '</label></div>';
 				}
 				$('#duty').append(html);
 				$('#duty').parent().css('display','block');

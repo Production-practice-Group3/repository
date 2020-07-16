@@ -120,4 +120,16 @@ public class PtDutyServiceImpl implements PtDutyService {
 		return 1;
 	}
 
+	/**
+	 * 根据组织id查找岗位
+	 * @param organId
+	 * @return
+	 */
+	@Override
+	public List<PtRRoleOrgan> getDutyByOrganId(int organId) {
+		// TODO Auto-generated method stub
+		List<PtRRoleOrgan> roleOrgans=ptRRoleOrganMapper.getDutyByOrganId(organId);
+		return roleOrgans;
+	}
+
 }

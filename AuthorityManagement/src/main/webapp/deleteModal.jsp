@@ -22,12 +22,18 @@
 		<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 	</div>
 
-	<input id="dataId" type="hidden" value="<%=request.getParameter("id")%>">
-	<input id="dataType" type="hidden" value="<%=request.getParameter("type")%>">
+	<input id="dataId" type="hidden" value=<%=request.getParameter("id") %> />
+	<input id="dataType" type="hidden" value=<%=request.getParameter("type")%> />
 
 	<script type="text/javascript">
+	     $(function(){
+	    	 //清除model缓存
+	    	 $("#_Modal").on("hidden.bs.modal", function() {
+				  $(this).removeData("bs.modal");
+			 });
+	     })
+	    
 		function deleteData(id, type) {
-		
 			$('#_Modal').modal('hide');
 	
 			var url = '';
@@ -63,7 +69,7 @@
 				if(data == 1){
 					toastr.success('<strong>成功&nbsp;! </strong>&nbsp;&nbsp;请到数据列表进行查看。');
 				}else{
-					toastr.error('<strong>失败&nbsp;! </strong>&nbsp;&nbsp;下面有子菜单不能删除。');
+					toastr.error('<strong>失败&nbsp;! </strong>&nbsp;&nbsp;请检查数据正确性或联系管理员。');
 				}
 				
 				setTimeout(function(){

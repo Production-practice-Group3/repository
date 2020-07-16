@@ -3,6 +3,7 @@ package com.service;
 import java.util.List;
 
 import com.bean.PtPageBean;
+import com.bean.PtRRoleOrgan;
 import com.helpbean.DutiesVO;
 
 public interface PtDutyService {
@@ -39,4 +40,11 @@ public interface PtDutyService {
 	 * @return
 	 */
 	public int remove(int id);
+	
+	/**
+	 * 根据组织id查找岗位
+	 * @param organId
+	 * @return
+	 */
+	public List<PtRRoleOrgan> getDutyByOrganId(int organId);
 }

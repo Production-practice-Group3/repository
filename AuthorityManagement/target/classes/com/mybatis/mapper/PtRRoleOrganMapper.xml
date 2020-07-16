@@ -22,12 +22,15 @@
 	<delete id="deleteByPrimaryKey"
 		parameterType="java.lang.Integer">
 		delete from pt_r_role_organ
-		where dutyid = #{dutyid,jdbcType=INTEGER}
+		where dutyid =
+		#{dutyid,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.bean.PtRRoleOrgan">
-		insert into pt_r_role_organ (dutyid, name, organ_uuid,
+		insert into pt_r_role_organ
+		(dutyid, name, organ_uuid,
 		role_uuid)
-		values (#{dutyid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		values
+		(#{dutyid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
 		#{organUuid,jdbcType=INTEGER},
 		#{roleUuid,jdbcType=INTEGER})
 	</insert>
@@ -82,17 +85,28 @@
 	<update id="updateByPrimaryKey"
 		parameterType="com.bean.PtRRoleOrgan">
 		update pt_r_role_organ
-		set name = #{name,jdbcType=VARCHAR},
+		set name =
+		#{name,jdbcType=VARCHAR},
 		organ_uuid = #{organUuid,jdbcType=INTEGER},
 		role_uuid = #{roleUuid,jdbcType=INTEGER}
-		where dutyid = #{dutyid,jdbcType=INTEGER}
+		where dutyid =
+		#{dutyid,jdbcType=INTEGER}
 	</update>
 
-	<select id="getRRoleOrgansByPage" resultMap="BaseResultMap" parameterType="map">
-		select <include refid="Base_Column_List" /> from pt_r_role_organ limit #{startIndex},#{pageSize}
+	<select id="getRRoleOrgansByPage" resultMap="BaseResultMap"
+		parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from pt_r_role_organ limit #{startIndex},#{pageSize}
 	</select>
-	
-	<select id="getRRoleOrganCount" resultType="int">
-	   select count(*) from pt_r_role_organ;
+
+	<select id="getRRoleOrganCount" resultType="java.lang.Integer">
+		select count(*) from pt_r_role_organ;
+	</select>
+	<select id="getDutyByOrganId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from pt_r_role_organ where organ_uuid=#{organUuid}
 	</select>
 </mapper>

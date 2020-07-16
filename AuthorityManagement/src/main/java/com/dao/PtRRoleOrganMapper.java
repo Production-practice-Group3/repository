@@ -30,4 +30,11 @@ public interface PtRRoleOrganMapper {
      */
     int getRRoleOrganCount();
     
+    /**
+	 * 根据组织id查找岗位
+	 * @param organId
+	 * @return
+	 */
+    List<PtRRoleOrgan> getDutyByOrganId(int organId);
+    
 }

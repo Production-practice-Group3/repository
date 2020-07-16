@@ -7,7 +7,7 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
-    <result column="organ_uuid" jdbcType="VARCHAR" property="organUuid" />
+    <result column="organ_uuid" jdbcType="INTEGER" property="organUuid" />
     <result column="nice_name" jdbcType="VARCHAR" property="niceName" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="status" jdbcType="CHAR" property="status" />
@@ -21,10 +21,26 @@
     select 
     <include refid="Base_Column_List" />
     from pt_user
-    where user_uuid = #{userUuid,jdbcType=INTEGER}
+    where user_uuid = #{userUuid,jdbcType=INTEGER} and status='N'
   </select>
+  
+  <select id="selectByPage" resultMap="BaseResultMap" parameterType="map">
+    select 
+    <include refid="Base_Column_List" />
+    from pt_user 
+    where status='N'
+    limit #{startIndex},#{pageSize}
+  </select>
+  
+  <select id="getCount" resultType="int">
+	   select count(*) 
+	   from pt_user
+	   where status='N';
+	</select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from pt_user
+    update  pt_user
+    set status='O'
     where user_uuid = #{userUuid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.bean.PtUser">

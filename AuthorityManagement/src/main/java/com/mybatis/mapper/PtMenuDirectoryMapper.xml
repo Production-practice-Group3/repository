@@ -1,117 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.PtMenuDirectoryMapper">
-  <resultMap id="BaseResultMap" type="com.bean.PtMenuDirectory">
-    <id column="menu_id" jdbcType="INTEGER" property="menuId" />
-    <result column="dir_name" jdbcType="VARCHAR" property="dirName" />
-    <result column="dir_level_number" jdbcType="INTEGER" property="dirLevelNumber" />
-    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
-    <result column="isitem" jdbcType="CHAR" property="isitem" />
-    <result column="locale" jdbcType="VARCHAR" property="locale" />
-    <result column="res_uuid" jdbcType="INTEGER" property="resUuid" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    menu_id, dir_name, dir_level_number, parent_id, isitem, locale, res_uuid
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from pt_menu_directory
-    where menu_id = #{menuId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from pt_menu_directory
-    where menu_id = #{menuId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.bean.PtMenuDirectory">
-    insert into pt_menu_directory (menu_id, dir_name, 
-      dir_level_number, parent_id, isitem, 
-      locale, res_uuid)
-    values (#{menuId,jdbcType=INTEGER}, #{dirName,jdbcType=VARCHAR}, 
-      #{dirLevelNumber,jdbcType=INTEGER}, #{parentId,jdbcType=VARCHAR}, #{isitem,jdbcType=CHAR}, 
-      #{locale,jdbcType=VARCHAR}, #{resUuid,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.bean.PtMenuDirectory">
-    insert into pt_menu_directory
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="menuId != null">
-        menu_id,
-      </if>
-      <if test="dirName != null">
-        dir_name,
-      </if>
-      <if test="dirLevelNumber != null">
-        dir_level_number,
-      </if>
-      <if test="parentId != null">
-        parent_id,
-      </if>
-      <if test="isitem != null">
-        isitem,
-      </if>
-      <if test="locale != null">
-        locale,
-      </if>
-      <if test="resUuid != null">
-        res_uuid,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="menuId != null">
-        #{menuId,jdbcType=INTEGER},
-      </if>
-      <if test="dirName != null">
-        #{dirName,jdbcType=VARCHAR},
-      </if>
-      <if test="dirLevelNumber != null">
-        #{dirLevelNumber,jdbcType=INTEGER},
-      </if>
-      <if test="parentId != null">
-        #{parentId,jdbcType=VARCHAR},
-      </if>
-      <if test="isitem != null">
-        #{isitem,jdbcType=CHAR},
-      </if>
-      <if test="locale != null">
-        #{locale,jdbcType=VARCHAR},
-      </if>
-      <if test="resUuid != null">
-        #{resUuid,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bean.PtMenuDirectory">
-    update pt_menu_directory
-    <set>
-      <if test="dirName != null">
-        dir_name = #{dirName,jdbcType=VARCHAR},
-      </if>
-      <if test="dirLevelNumber != null">
-        dir_level_number = #{dirLevelNumber,jdbcType=INTEGER},
-      </if>
-      <if test="parentId != null">
-        parent_id = #{parentId,jdbcType=VARCHAR},
-      </if>
-      <if test="isitem != null">
-        isitem = #{isitem,jdbcType=CHAR},
-      </if>
-      <if test="locale != null">
-        locale = #{locale,jdbcType=VARCHAR},
-      </if>
-      <if test="resUuid != null">
-        res_uuid = #{resUuid,jdbcType=INTEGER},
-      </if>
-    </set>
-    where menu_id = #{menuId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.bean.PtMenuDirectory">
-    update pt_menu_directory
-    set dir_name = #{dirName,jdbcType=VARCHAR},
-      dir_level_number = #{dirLevelNumber,jdbcType=INTEGER},
-      parent_id = #{parentId,jdbcType=VARCHAR},
-      isitem = #{isitem,jdbcType=CHAR},
-      locale = #{locale,jdbcType=VARCHAR},
-      res_uuid = #{resUuid,jdbcType=INTEGER}
-    where menu_id = #{menuId,jdbcType=INTEGER}
-  </update>
+	<resultMap id="BaseResultMap" type="com.bean.PtMenuDirectory">
+		<id column="menu_id" jdbcType="INTEGER" property="menuId" />
+		<result column="dir_name" jdbcType="VARCHAR" property="dirName" />
+		<result column="dir_level_number" jdbcType="INTEGER"
+			property="dirLevelNumber" />
+		<result column="parent_id" jdbcType="VARCHAR"
+			property="parentId" />
+		<result column="isitem" jdbcType="CHAR" property="isitem" />
+		<result column="locale" jdbcType="VARCHAR" property="locale" />
+		<result column="res_uuid" jdbcType="INTEGER" property="resUuid" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		menu_id, dir_name, dir_level_number, parent_id, isitem, locale, res_uuid
+	</sql>
+	<select id="selectByPrimaryKey"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pt_menu_directory
+		where menu_id = #{menuId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from pt_menu_directory
+		where menu_id = #{menuId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.bean.PtMenuDirectory">
+		insert into pt_menu_directory (menu_id, dir_name,
+		dir_level_number, parent_id, isitem,
+		locale, res_uuid)
+		values (#{menuId,jdbcType=INTEGER}, #{dirName,jdbcType=VARCHAR},
+		#{dirLevelNumber,jdbcType=INTEGER}, #{parentId,jdbcType=VARCHAR},
+		#{isitem,jdbcType=CHAR},
+		#{locale,jdbcType=VARCHAR}, #{resUuid,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.bean.PtMenuDirectory">
+		insert into pt_menu_directory
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="menuId != null">
+				menu_id,
+			</if>
+			<if test="dirName != null">
+				dir_name,
+			</if>
+			<if test="dirLevelNumber != null">
+				dir_level_number,
+			</if>
+			<if test="parentId != null">
+				parent_id,
+			</if>
+			<if test="isitem != null">
+				isitem,
+			</if>
+			<if test="locale != null">
+				locale,
+			</if>
+			<if test="resUuid != null">
+				res_uuid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="menuId != null">
+				#{menuId,jdbcType=INTEGER},
+			</if>
+			<if test="dirName != null">
+				#{dirName,jdbcType=VARCHAR},
+			</if>
+			<if test="dirLevelNumber != null">
+				#{dirLevelNumber,jdbcType=INTEGER},
+			</if>
+			<if test="parentId != null">
+				#{parentId,jdbcType=VARCHAR},
+			</if>
+			<if test="isitem != null">
+				#{isitem,jdbcType=CHAR},
+			</if>
+			<if test="locale != null">
+				#{locale,jdbcType=VARCHAR},
+			</if>
+			<if test="resUuid != null">
+				#{resUuid,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.bean.PtMenuDirectory">
+		update pt_menu_directory
+		<set>
+			<if test="dirName != null">
+				dir_name = #{dirName,jdbcType=VARCHAR},
+			</if>
+			<if test="dirLevelNumber != null">
+				dir_level_number = #{dirLevelNumber,jdbcType=INTEGER},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId,jdbcType=VARCHAR},
+			</if>
+			<if test="isitem != null">
+				isitem = #{isitem,jdbcType=CHAR},
+			</if>
+			<if test="locale != null">
+				locale = #{locale,jdbcType=VARCHAR},
+			</if>
+			<if test="resUuid != null">
+				res_uuid = #{resUuid,jdbcType=INTEGER},
+			</if>
+		</set>
+		where menu_id = #{menuId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.bean.PtMenuDirectory">
+		update pt_menu_directory
+		set dir_name = #{dirName,jdbcType=VARCHAR},
+		dir_level_number = #{dirLevelNumber,jdbcType=INTEGER},
+		parent_id = #{parentId,jdbcType=VARCHAR},
+		isitem = #{isitem,jdbcType=CHAR},
+		locale = #{locale,jdbcType=VARCHAR},
+		res_uuid = #{resUuid,jdbcType=INTEGER}
+		where menu_id = #{menuId,jdbcType=INTEGER}
+	</update>
+
+	<select id="getPtMenuDirectoryByPage" resultMap="BaseResultMap"
+		parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from pt_menu_directory limit #{startIndex},#{pageSize}
+	</select>
+	
+	<select id="getPtMenuDirectoryCount" resultType="int">
+	   select count(*) from pt_menu_directory;
+	</select>
 </mapper>

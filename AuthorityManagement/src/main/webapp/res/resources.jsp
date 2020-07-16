@@ -46,7 +46,7 @@
 							{ field : 'menu_id', title : '菜单目录号' },
 							{ field : 'dir_name', title : '菜单名称' },
 							{ field : 'dir_level_number', title : '菜单级数' },
-							{ field : 'parent.dir_name', title : '父菜单名称' },
+							{ field : 'parent.dirName', title : '父菜单名称' },
 							{ field : 'isitem', title : '明细否' ,formatter : ifFormatter},
 							{ field : 'locale', title : '语言类型' },
 						  ],

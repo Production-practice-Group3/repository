@@ -10,4 +10,9 @@ public interface PtMenuDirectoryService {
 	 * @return
 	 */
 	public PtPageBean<ResVo> getResources(int pageSize,int pageNumber);
+	
+	/**
+	 * 删除资源信息
+	 */
+	public int deleteRes(int id);
 }

@@ -14,6 +14,8 @@ public class PtMenuDirectory {
     private String locale;
 
     private Integer resUuid;
+    
+    private String status;
 
 	public Integer getMenuId() {
 		return menuId;
@@ -69,6 +71,14 @@ public class PtMenuDirectory {
 
 	public void setResUuid(Integer resUuid) {
 		this.resUuid = resUuid;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
     

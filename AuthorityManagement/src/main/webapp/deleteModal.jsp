@@ -63,7 +63,7 @@
 				if(data == 1){
 					toastr.success('<strong>成功&nbsp;! </strong>&nbsp;&nbsp;请到数据列表进行查看。');
 				}else{
-					toastr.error('<strong>失败&nbsp;! </strong>&nbsp;&nbsp;请检查数据正确性或联系管理员。');
+					toastr.error('<strong>失败&nbsp;! </strong>&nbsp;&nbsp;下面有子菜单不能删除。');
 				}
 				
 				setTimeout(function(){

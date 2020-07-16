@@ -27,4 +27,14 @@ public class PtMenuDirectoryController {
 		return pageBean;
 	}
 	
+	/**
+	 * 删除资源信息
+	 */
+	@RequestMapping(value="/remove",method=RequestMethod.GET)
+	@ResponseBody
+	public int remove(int id) {
+		int data = resService.deleteRes(id);
+		return data;
+	}
+	
 }

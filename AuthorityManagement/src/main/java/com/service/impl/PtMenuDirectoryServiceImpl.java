@@ -43,6 +43,7 @@ public class PtMenuDirectoryServiceImpl implements PtMenuDirectoryService {
 			}
 			resvo.setIsitem(res.getIsitem());
 			resvo.setLocale(res.getLocale());
+			resvo.setRes_uuid(res.getResUuid());
 			reslist.add(resvo);
 		}
 		PtPageBean<ResVo> pageBean=new PtPageBean<ResVo>();
@@ -52,6 +53,20 @@ public class PtMenuDirectoryServiceImpl implements PtMenuDirectoryService {
 		return pageBean;
 		
 		
+	}
+	
+	/**
+	 * 删除资源信息
+	 */
+	@Override
+	public int deleteRes(int id) {
+		// TODO Auto-generated method stub
+		if(ptMenuDirectoryMapper.selectParentId(id).size()==0) {
+			ptMenuDirectoryMapper.updateStatus("1", id);
+			return 1;
+		}else{
+			return -1;
+		}
 	}
 
 }

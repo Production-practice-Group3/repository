@@ -3,6 +3,8 @@ package com.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.bean.PtMenuDirectory;
 
 public interface PtMenuDirectoryMapper {
@@ -23,9 +25,21 @@ public interface PtMenuDirectoryMapper {
      * @return
      */
     List<PtMenuDirectory> getPtMenuDirectoryByPage(HashMap<String, Integer> map);
+    
     /**
      * 获取数据总数
      * @return
      */
     int getPtMenuDirectoryCount();
+    
+    /**
+     * 查询有几个孩子
+     */
+    List<PtMenuDirectory> selectParentId(Integer menuId);
+    
+    /**
+     * 删除资源修改status
+     * @return
+     */
+    int updateStatus(@Param("status")String status,@Param("menuId")Integer menuId);
 }

@@ -40,9 +40,6 @@
   <insert id="insertSelective" parameterType="com.bean.PtOrgan">
     insert into pt_organ
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="organUuid != null">
-        organ_uuid,
-      </if>
       <if test="organCode != null">
         organ_code,
       </if>
@@ -72,9 +69,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="organUuid != null">
-        #{organUuid,jdbcType=INTEGER},
-      </if>
       <if test="organCode != null">
         #{organCode,jdbcType=VARCHAR},
       </if>

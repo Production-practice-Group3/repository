@@ -26,14 +26,14 @@
 				<div class="form-group">
 					<label class="col-sm-4 control-label">组织编码</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="organ_code" name="organ_code" placeholder="请输入组织编码">
+						<input type="text" class="form-control" id="organ_code" name="organCode" placeholder="请输入组织编码">
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label class="col-sm-4 control-label">组织名称</label>
 					<div class="col-sm-8">
-						<input class="form-control" id="organ_name" name="organ_name" placeholder="请输入组织名称">
+						<input class="form-control" id="organ_name" name="organName" placeholder="请输入组织名称">
 					</div>
 				</div>
 				
@@ -43,8 +43,8 @@
 					<label class="col-sm-4 control-label">父组织信息</label>
 					<div class="col-sm-8">
 						<div class="input-group mb15">
-							<input id="parent_name" class="form-control" type="text" name="parent_name" placeholder="请输入父组织信息"/>
-							<input id="parent_uuid" type="hidden" name="parent_uuid"/>
+							<input id="parent_name" class="form-control" type="text" name="parentName" placeholder="请输入父组织信息"/>
+							<input id="parent_uuid" type="hidden" name="parentUuid"/>
 							<span class="input-group-addon" data-toggle="modal" data-target="#orgTree"><i class="fa fa-paper-plane"></i></span> 
 						</div>
 					</div>
@@ -60,7 +60,7 @@
 				<div class="form-group">
 					<label class="col-sm-4 control-label">组织账号</label>
 					<div class="col-sm-8">
-						<input class="form-control" id="account_code" name="account_code" placeholder="请输入组织账号">
+						<input class="form-control" id="account_code" name="accountCode" placeholder="请输入组织账号">
 					</div>
 				</div>
 

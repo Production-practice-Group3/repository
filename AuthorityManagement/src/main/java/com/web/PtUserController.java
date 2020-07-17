@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bean.PtPageBean;
+import com.bean.PtRRoleOrgan;
 import com.bean.PtUser;
 import com.dao.PtUserMapper;
+import com.helpbean.DutiesVO;
 import com.helpbean.UsersVO;
 import com.service.PtUserService;
 
@@ -33,9 +35,39 @@ public class PtUserController {
     @RequestMapping(value="/getUsers",method=RequestMethod.GET)
     @ResponseBody
     public PtPageBean<UsersVO> listUser(int pageSize,int pageNumber){
-    	PtPageBean<UsersVO> pageBean=PtUserService.selectByPage(pageSize, pageNumber);
-		return pageBean;
+		return PtUserService.selectByPage(pageSize, pageNumber);
     }
+    /**
+	 * 增加用户
+	 * @param dutiesVO
+	 */
+	@RequestMapping(value="/insert",method=RequestMethod.POST)
+	@ResponseBody
+	public int insertUser(UsersVO u) {
+		return PtUserService.insert(u);
+	}
+	
+	/**
+	 * 根据id获取用户信息
+	 * @param dutyId
+	 * @return
+	 */
+	@RequestMapping(value="/getUser",method=RequestMethod.GET)
+	@ResponseBody
+	public UsersVO getUser(int uuid) {
+		return PtUserService.selectByPrimaryKey(uuid);
+	}
+	
+	/**
+	 * 更新用户信息
+	 * @param dutiesVO
+	 * @return
+	 */
+	@RequestMapping(value="/update",method=RequestMethod.POST)
+	@ResponseBody
+	public int updateUser(UsersVO u) {
+		return PtUserService.updateByPrimaryKey(u);
+	}
     
     /**
 	 * 删除用户
@@ -43,10 +75,8 @@ public class PtUserController {
 	 */
     @RequestMapping(value="/remove",method=RequestMethod.GET)
     @ResponseBody
-    public String removeUser(int id){
-    	System.out.println("....."+id);
-    	PtUserService.deleteByPrimaryKey(id);
-		return "sucess";
+    public int removeUser(int id){
+		 return PtUserService.deleteByPrimaryKey(id);
     }
 
 }

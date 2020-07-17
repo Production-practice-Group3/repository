@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.bean.PtUser;
+import com.helpbean.UsersVO;
 
 public interface PtUserMapper {
     int deleteByPrimaryKey(Integer userUuid);
@@ -13,6 +14,8 @@ public interface PtUserMapper {
     int insertSelective(PtUser record);
 
     PtUser selectByPrimaryKey(Integer userUuid);
+    
+    PtUser selectByUsername(String username);//根据用户名查询
     /**
      * 获取分页用户信息
      * @return

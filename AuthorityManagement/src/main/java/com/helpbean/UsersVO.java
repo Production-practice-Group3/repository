@@ -1,22 +1,58 @@
 package com.helpbean;
 
 import java.util.Date;
+import java.util.List;
 
 import com.bean.PtOrgan;
+import com.bean.PtRRoleOrgan;
 
 public class UsersVO {
 
     private Integer userUuid;
-
+ 
     private String username;
+    
+    private String password;
 
     private String email;
 
     private String mobile;
 
     private PtOrgan organ;
+    
+    private List<PtRRoleOrgan> duties;
+    
+    public List<PtRRoleOrgan> getDuties() {
+		return duties;
+	}
 
-    public PtOrgan getOrgan() {
+	public void setDuties(List<PtRRoleOrgan> duties) {
+		this.duties = duties;
+	}
+
+	private String niceName;
+
+    private String remark;
+
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public PtOrgan getOrgan() {
 		return organ;
 	}
 
@@ -24,8 +60,6 @@ public class UsersVO {
 		this.organ = organ;
 	}
 
-	private String niceName;
-    
     private Date modtime;
 
     public Integer getUserUuid() {

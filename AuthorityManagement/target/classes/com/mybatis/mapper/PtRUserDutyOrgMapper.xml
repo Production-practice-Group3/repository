@@ -6,6 +6,14 @@
     <result column="user_uuid" jdbcType="INTEGER" property="userUuid" />
     <result column="dutyid" jdbcType="INTEGER" property="dutyid" />
   </resultMap>
+  <resultMap id="ResultMap" type="com.bean.PtRRoleOrgan">
+    <id column="dutyid" jdbcType="INTEGER" property="dutyid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="organ_uuid" jdbcType="INTEGER" property="organUuid" />
+    <result column="role_uuid" jdbcType="INTEGER" property="roleUuid" />
+    
+
+  </resultMap>
   <sql id="Base_Column_List">
     user_dutyid, user_uuid, dutyid
   </sql>
@@ -15,9 +23,22 @@
     from pt_r_user_duty_org
     where user_dutyid = #{userDutyid,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectByUserid" parameterType="java.lang.Integer" resultMap="ResultMap">
+    select o.*
+    from pt_r_user_duty_org r,pt_r_role_organ o
+    where r.dutyid=o.dutyid and r.user_uuid = #{userid,jdbcType=INTEGER}
+  </select>
+  
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from pt_r_user_duty_org
     where user_dutyid = #{userDutyid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByUserid" parameterType="java.lang.Integer">
+    delete from pt_r_user_duty_org
+    where user_uuid = #{userid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.bean.PtRUserDutyOrg">
     insert into pt_r_user_duty_org (user_dutyid, user_uuid, dutyid

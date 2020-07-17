@@ -9,16 +9,16 @@ import com.helpbean.UsersVO;
 public interface PtUserService {
 	int deleteByPrimaryKey(Integer userUuid);
 
-    int insert(PtUser record);
+    int insert(UsersVO record);
 
 
-    PtUser selectByPrimaryKey(Integer userUuid);
+    UsersVO selectByPrimaryKey(Integer userUuid);
     /**
 	 * 获取展示的用户列表
 	 * @return
 	 */
     PtPageBean<UsersVO> selectByPage(int pageSize,int pageNumber);
 
-    int updateByPrimaryKey(PtUser record);
+    int updateByPrimaryKey(UsersVO record);
 
 }

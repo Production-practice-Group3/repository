@@ -1,5 +1,8 @@
 package com.dao;
 
+import java.util.List;
+
+import com.bean.PtRRoleOrgan;
 import com.bean.PtRUserDutyOrg;
 
 public interface PtRUserDutyOrgMapper {
@@ -10,6 +13,10 @@ public interface PtRUserDutyOrgMapper {
     int insertSelective(PtRUserDutyOrg record);
 
     PtRUserDutyOrg selectByPrimaryKey(Integer userDutyid);
+    
+    List<PtRRoleOrgan> selectByUserid(Integer userid);//通过用户id找岗位
+    
+    int deleteByUserid(Integer userDutyid);//通过用户id删除数据
 
     int updateByPrimaryKeySelective(PtRUserDutyOrg record);
 

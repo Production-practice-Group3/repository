@@ -64,7 +64,7 @@
 					toastr.info('请选择一条数据进行数据编辑操作!');
 					return;
 				}
-				window.parent.openIframe('${pageContext.request.contextPath}/org/updateOrganization.jsp?id=' + orgs[0].organ_uuid);
+				window.parent.openIframe('${pageContext.request.contextPath}/org/updateOrganization.jsp?id=' + orgs[0].organUuid);
 			});			
 			
 			$('#btn_delete').click(function(){
@@ -74,7 +74,7 @@
 					toastr.info('请选择一条数据进行数据编辑操作!');
 					return;
 				}
-				window.parent.openModel('${pageContext.request.contextPath}/deleteModal.jsp?id=' + orgs[0].organ_uuid + '&type=org');
+				window.parent.openModel('${pageContext.request.contextPath}/deleteModal.jsp?id=' + orgs[0].organUuid + '&type=org');
 			});	
 		});
 	

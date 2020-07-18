@@ -13,6 +13,8 @@ public class PtOrgan {
 
     private Integer parentUuid;
 
+    private String parentName;
+    
     private String status;
 
     private Date modtime;
@@ -102,4 +104,13 @@ public class PtOrgan {
     public void setShortname(String shortname) {
         this.shortname = shortname == null ? null : shortname.trim();
     }
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+	
 }

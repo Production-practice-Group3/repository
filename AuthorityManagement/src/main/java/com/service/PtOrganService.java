@@ -19,4 +19,26 @@ public interface PtOrganService {
      * @return
      */
 	int insertOrgan(PtOrgan organ);
+	
+	/**
+	 * 根据id查找组织信息
+	 * @param uuid
+	 * @return
+	 */
+	public PtOrgan selectByPrimaryKey(Integer uuid);
+	
+	/**
+	 * 修改组织信息
+	 * @param organ
+	 * @return
+	 */
+	int updateOrgan(PtOrgan organ);
+	
+	/**
+	 * 删除组织信息
+	 * @param uuid
+	 * @return
+	 */
+	int removeOrgan(Integer uuid);
+	
 }

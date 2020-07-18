@@ -23,4 +23,8 @@ public interface PtOrganMapper {
     List<PtOrgan> selectByPage(HashMap<String, Integer> map);
     
     int getOrganCount();
+    
+    int removeByPrimaryKey(int id);
+    
+    List<PtOrgan> findChildAll(int id);
 }

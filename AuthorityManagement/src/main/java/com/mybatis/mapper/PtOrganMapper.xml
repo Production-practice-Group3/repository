@@ -156,4 +156,15 @@
   <select id="getOrganCount" resultType="int">
     select count(*) from pt_organ;
   </select>
+  <update id="removeByPrimaryKey" parameterType="java.lang.Integer">
+    update pt_organ
+    set status = 'Y'
+    where organ_uuid = #{organUuid,jdbcType=INTEGER}
+  </update>
+  <select id="findChildAll" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select 
+    <include refid="Base_Column_List" />
+    from pt_organ
+    where parent_uuid = #{parentUuid,jdbcType=INTEGER} and status='N'
+  </select>
 </mapper>

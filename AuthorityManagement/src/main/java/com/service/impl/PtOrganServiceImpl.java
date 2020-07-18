@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.bean.PtOrgan;
 import com.bean.PtPageBean;
+import com.bean.PtRRoleOrgan;
+import com.bean.PtUser;
 import com.dao.PtOrganMapper;
 import com.helpbean.OrgansVO;
+import com.helpbean.UsersVO;
 import com.service.PtOrganService;
 @Service
 public class PtOrganServiceImpl implements PtOrganService{
@@ -74,5 +77,68 @@ public class PtOrganServiceImpl implements PtOrganService{
 		org.setModtime(day);
 		ptOrganMapper.insertSelective(org);
 		return 1;
+	}
+
+	/**
+	 * 根据id查找组织信息
+	 * @param uuid
+	 * @return
+	 */
+    @Override
+	public PtOrgan selectByPrimaryKey(Integer uuid) {
+    	PtOrgan organ=ptOrganMapper.selectByPrimaryKey(uuid);
+    	String pn = ptOrganMapper.getParentName(organ);
+		organ.setParentName(pn);
+    	return organ;
+	}
+	
+	/**
+	 * 修改组织信息
+	 * @param organ
+	 * @return
+	 */
+	@Override
+	public int updateOrgan(PtOrgan organ) {
+		//organ.setStatus("N");
+		Date day=new Date();
+		organ.setModtime(day);
+		organ.setParentUuid(10);//用于测试，需修改
+		int parentID = organ.getParentUuid();
+		String count ="2";//级数至少为2
+		int parseInt = 2;
+		if(parentID != -1) {
+			PtOrgan org=ptOrganMapper.selectByPrimaryKey(parentID);
+			count = org.getOrganType();
+			parseInt = Integer.parseInt(count);
+			parseInt++;
+			count = String.valueOf(parseInt);
+		}
+		organ.setOrganType(count);
+		int res = ptOrganMapper.updateByPrimaryKeySelective(organ);
+		parseInt++;
+		count= String.valueOf(parseInt);
+		List<PtOrgan> orgs = ptOrganMapper.findChildAll(organ.getOrganUuid());
+		for(PtOrgan org:orgs) {
+			org.setOrganType(count);
+			org.setModtime(day);
+			ptOrganMapper.updateByPrimaryKey(org);
+		}
+		return res;
+	}
+
+	/**
+	 * 删除组织信息
+	 * @param uuid
+	 * @return
+	 */
+	@Override
+	public int removeOrgan(Integer uuid) {
+		System.out.println(uuid);
+		int res = ptOrganMapper.removeByPrimaryKey(uuid);
+		List<PtOrgan> orgs = ptOrganMapper.findChildAll(uuid);
+		for(PtOrgan org:orgs) {
+			ptOrganMapper.removeByPrimaryKey(org.getOrganUuid());
+		}
+		return res;
 	}
 }

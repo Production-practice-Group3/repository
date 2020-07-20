@@ -18,7 +18,7 @@
 		
 		$(function() {
 			
-			$.get('${pageContext.request.contextPath}/res/getResourcesByParentId', { parentId : 'root' }, function(root) {
+			$.get('${pageContext.request.contextPath}/res/getResourcesByParentId', { parentId : '-1' }, function(root) {
 				for (var i = 0; i < root.children.length; i++) {
 					getChildren_in(root.children[i]);
 					if (root.children[i].hasChildren){

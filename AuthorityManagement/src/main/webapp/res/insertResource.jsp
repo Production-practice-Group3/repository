@@ -33,7 +33,7 @@
 					<div class="col-sm-8">
 						<div class="input-group mb15">
 							<input id="parent_name" class="form-control" type="text" name="parent_name" placeholder="请选择父菜单信息"/>
-							<input id="parent_id" type="hidden" name="parent_id"/>
+						    <input id="parent_id" type="hidden" name="parent_id"/> 
 							<span class="input-group-addon" data-toggle="modal" data-target="#resTree"><i class="fa fa-paper-plane"></i></span> 
 						</div>
 					</div>

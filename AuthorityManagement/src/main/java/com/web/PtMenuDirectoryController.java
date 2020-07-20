@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bean.PtMenuDirectory;
 import com.bean.PtPageBean;
+import com.bean.PtTree;
 import com.helpbean.ResVo;
 import com.service.PtMenuDirectoryService;
 
@@ -37,4 +39,48 @@ public class PtMenuDirectoryController {
 		return data;
 	}
 	
+	/**
+	 * 增加资源信息
+	 */
+	@RequestMapping(value="/insert",method=RequestMethod.POST)
+	@ResponseBody
+	public int insert(String dir_name,String parent_name,int parent_id,String isitem) {
+		int data=resService.insert(dir_name,parent_id,isitem);
+		return data;
+	}
+	
+	/**
+	 * 根据menuid获取资源信息
+	 */
+	@RequestMapping(value="/getResource",method=RequestMethod.GET)
+	@ResponseBody
+	public ResVo getResource(int uuid) {
+		//System.out.print(uuid+".................");
+		ResVo resvo = resService.getResource(uuid);
+		
+		return resvo;
+	}
+	
+	/**
+	 * 更新资源信息
+	 * @param resvo
+	 * @return
+	 */
+	@RequestMapping(value="update",method=RequestMethod.POST)
+	@ResponseBody
+	public int update(String dir_name,String parent_name,int parent_id,String isitem,int menu_id) {
+		int data = resService.update(dir_name,parent_id,isitem,menu_id);
+		return data;
+	}
+	
+	
+	/**
+	 * 资源树
+	 */
+	@RequestMapping(value="getResourcesByParentId",method=RequestMethod.GET)
+	@ResponseBody
+	public PtTree getResourcesByParentId(){
+		PtTree tree = resService.getResourcesByParentId();
+		return tree;	
+	}
 }

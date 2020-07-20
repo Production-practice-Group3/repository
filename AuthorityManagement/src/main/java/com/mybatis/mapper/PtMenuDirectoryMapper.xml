@@ -6,16 +6,16 @@
 		<result column="dir_name" jdbcType="VARCHAR" property="dirName" />
 		<result column="dir_level_number" jdbcType="INTEGER"
 			property="dirLevelNumber" />
-		<result column="parent_id" jdbcType="VARCHAR"
+		<result column="parent_id" jdbcType="INTEGER"
 			property="parentId" />
 		<result column="isitem" jdbcType="CHAR" property="isitem" />
 		<result column="locale" jdbcType="VARCHAR" property="locale" />
-		<result column="res_uuid" jdbcType="INTEGER" property="resUuid" />
+		<!-- <result column="res_uuid" jdbcType="INTEGER" property="resUuid" /> -->
 		<result column="status" jdbcType="CHAR" property="status" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		menu_id, dir_name, dir_level_number, parent_id, isitem,
-		locale, res_uuid, status
+		locale, status
 	</sql>
 	<select id="selectByPrimaryKey"
 		parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -33,16 +33,16 @@
 	<insert id="insert" parameterType="com.bean.PtMenuDirectory">
 		insert into pt_menu_directory
 		(menu_id, dir_name,
-		dir_level_number, parent_id, isitem,
-		locale,
-		res_uuid)
+		dir_level_number,
+		parent_id, isitem,
+		locale)
 		values (#{menuId,jdbcType=INTEGER},
 		#{dirName,jdbcType=VARCHAR},
 		#{dirLevelNumber,jdbcType=INTEGER},
-		#{parentId,jdbcType=VARCHAR},
+		#{parentId,jdbcType=INTEGER},
 		#{isitem,jdbcType=CHAR},
 		#{locale,jdbcType=VARCHAR},
-		#{resUuid,jdbcType=INTEGER},
+		<!-- #{resUuid,jdbcType=INTEGER}, -->
 		#{status,jdbcType=CHAR})
 	</insert>
 	<insert id="insertSelective"
@@ -67,9 +67,7 @@
 			<if test="locale != null">
 				locale,
 			</if>
-			<if test="resUuid != null">
-				res_uuid,
-			</if>
+			<!-- <if test="resUuid != null"> res_uuid, </if> -->
 			<if test="status != null">
 				status,
 			</if>
@@ -85,7 +83,7 @@
 				#{dirLevelNumber,jdbcType=INTEGER},
 			</if>
 			<if test="parentId != null">
-				#{parentId,jdbcType=VARCHAR},
+				#{parentId,jdbcType=INTEGER},
 			</if>
 			<if test="isitem != null">
 				#{isitem,jdbcType=CHAR},
@@ -93,9 +91,7 @@
 			<if test="locale != null">
 				#{locale,jdbcType=VARCHAR},
 			</if>
-			<if test="resUuid != null">
-				#{resUuid,jdbcType=INTEGER},
-			</if>
+			<!-- <if test="resUuid != null"> #{resUuid,jdbcType=INTEGER}, </if> -->
 			<if test="status != null">
 				#{status,jdbcType=CHAR},
 			</if>
@@ -112,7 +108,7 @@
 				dir_level_number = #{dirLevelNumber,jdbcType=INTEGER},
 			</if>
 			<if test="parentId != null">
-				parent_id = #{parentId,jdbcType=VARCHAR},
+				parent_id = #{parentId,jdbcType=INTEGER},
 			</if>
 			<if test="isitem != null">
 				isitem = #{isitem,jdbcType=CHAR},
@@ -120,9 +116,8 @@
 			<if test="locale != null">
 				locale = #{locale,jdbcType=VARCHAR},
 			</if>
-			<if test="resUuid != null">
-				res_uuid = #{resUuid,jdbcType=INTEGER},
-			</if>
+			<!-- <if test="resUuid != null"> res_uuid = #{resUuid,jdbcType=INTEGER}, 
+				</if> -->
 			<if test="status != null">
 				status = #{status,jdbcType=CHAR},
 			</if>
@@ -137,13 +132,12 @@
 		dir_level_number =
 		#{dirLevelNumber,jdbcType=INTEGER},
 		parent_id =
-		#{parentId,jdbcType=VARCHAR},
+		#{parentId,jdbcType=INTEGER},
 		isitem = #{isitem,jdbcType=CHAR},
 		locale =
 		#{locale,jdbcType=VARCHAR},
 		status = #{status,jdbcType=CHAR},
-		res_uuid =
-		#{resUuid,jdbcType=INTEGER}
+		<!-- res_uuid = #{resUuid,jdbcType=INTEGER} -->
 		where menu_id = #{menuId,jdbcType=INTEGER}
 	</update>
 
@@ -173,6 +167,20 @@
 		select
 		<include refid="Base_Column_List" />
 		from pt_menu_directory where parent_id =
-		#{parentId,jdbcType=VARCHAR}
+		#{parentId,jdbcType=INTEGER}
 	</select>
+
+	<select id="selectMenuName" resultType="String">
+		select dir_name from
+		pt_menu_directory where status = '0'
+	</select>
+	
+	<update id="updateLevelById">
+	update pt_menu_directory
+		set
+		dir_level_number =
+		#{dirLevelNumber,jdbcType=INTEGER}
+		where menu_id =
+		#{menuId,jdbcType=INTEGER}
+	</update>
 </mapper>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50728
 File Encoding         : 65001
 
-Date: 2020-07-16 14:59:39
+Date: 2020-07-20 12:33:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,64 +23,64 @@ CREATE TABLE `pt_menu_directory` (
   `menu_id` int(50) unsigned NOT NULL AUTO_INCREMENT COMMENT '菜单目录id（树型结构层级编码）',
   `dir_name` varchar(100) DEFAULT NULL COMMENT '菜单目录名称',
   `dir_level_number` int(2) DEFAULT NULL COMMENT '菜单目录级数',
-  `parent_id` varchar(32) DEFAULT NULL COMMENT '父目录id',
+  `parent_id` int(50) DEFAULT NULL COMMENT '父目录id',
   `isitem` char(1) NOT NULL DEFAULT '1' COMMENT '明细否：0 非明细；1 明细',
   `locale` varchar(32) NOT NULL DEFAULT 'zh_CN' COMMENT '当前国际化标志',
-  `res_uuid` int(50) DEFAULT NULL,
   `status` char(1) NOT NULL DEFAULT '0' COMMENT '删除否：0 未删除；1 删除',
   PRIMARY KEY (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COMMENT='菜单目录表';
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COMMENT='菜单目录表';
 
 -- ----------------------------
 -- Records of pt_menu_directory
 -- ----------------------------
-INSERT INTO `pt_menu_directory` VALUES ('1', '事务中心', '1', 'root', '0', 'zh_CN', '1', '0');
-INSERT INTO `pt_menu_directory` VALUES ('2', '待办事项', '2', '1', '1', 'zh_CN', '2', '0');
-INSERT INTO `pt_menu_directory` VALUES ('3', '采购信息', '1', 'root', '0', 'zh_CN', '3', '0');
-INSERT INTO `pt_menu_directory` VALUES ('4', '采购申请查看', '2', '3', '1', 'zh_CN', '4', '0');
-INSERT INTO `pt_menu_directory` VALUES ('5', '采购执行查看', '2', '3', '1', 'zh_CN', '5', '0');
-INSERT INTO `pt_menu_directory` VALUES ('6', '报价管理', '2', 'root', '0', 'zh_CN', '6', '0');
-INSERT INTO `pt_menu_directory` VALUES ('7', '参与报价', '2', '6', '1', 'zh_CN', '7', '0');
-INSERT INTO `pt_menu_directory` VALUES ('8', '报价结果', '2', '6', '1', 'zh_CN', '8', '0');
-INSERT INTO `pt_menu_directory` VALUES ('9', '保证金管理', '1', 'root', '0', 'zh_CN', '9', '0');
-INSERT INTO `pt_menu_directory` VALUES ('10', '保证金账户台账', '2', '9', '1', 'zh_CN', '10', '0');
-INSERT INTO `pt_menu_directory` VALUES ('11', '保证金使用明细', '2', '9', '1', 'zh_CN', '11', '0');
-INSERT INTO `pt_menu_directory` VALUES ('12', '汇款凭证录入', '2', '9', '1', 'zh_CN', '12', '0');
-INSERT INTO `pt_menu_directory` VALUES ('13', 'test', '2', '1', '1', 'zh_CN', '13', '0');
-INSERT INTO `pt_menu_directory` VALUES ('14', '履约保证金台账', '2', '9', '1', 'zh_CN', '14', '0');
-INSERT INTO `pt_menu_directory` VALUES ('15', '供应资格管理', '1', 'root', '0', 'zh_CN', '15', '0');
-INSERT INTO `pt_menu_directory` VALUES ('16', '注册对象管理', '2', '15', '1', 'zh_CN', '16', '0');
-INSERT INTO `pt_menu_directory` VALUES ('17', '采购申请管理', '1', 'root', '0', 'zh_CN', '17', '0');
-INSERT INTO `pt_menu_directory` VALUES ('18', '采购需求创建', '2', '17', '1', 'zh_CN', '18', '0');
-INSERT INTO `pt_menu_directory` VALUES ('19', '采购审核', '2', '17', '1', 'zh_CN', '19', '0');
-INSERT INTO `pt_menu_directory` VALUES ('20', '采购申请查询', '2', '17', '1', 'zh_CN', '20', '0');
-INSERT INTO `pt_menu_directory` VALUES ('21', '采购执行报批', '1', 'root', '0', 'zh_CN', '21', '0');
-INSERT INTO `pt_menu_directory` VALUES ('22', '采购执行查询', '2', '21', '1', 'zh_CN', '22', '0');
-INSERT INTO `pt_menu_directory` VALUES ('23', '长协交易', '1', 'root', '0', 'zh_CN', '23', '0');
-INSERT INTO `pt_menu_directory` VALUES ('24', '长协交易查看', '2', '23', '1', 'zh_CN', '24', '0');
-INSERT INTO `pt_menu_directory` VALUES ('25', '长协交易创建', '2', '23', '1', 'zh_CN', '25', '0');
-INSERT INTO `pt_menu_directory` VALUES ('26', '报价保证金明细', '2', '9', '1', 'zh_CN', '26', '0');
-INSERT INTO `pt_menu_directory` VALUES ('27', '履约保证金明细', '2', '9', '1', 'zh_CN', '27', '0');
-INSERT INTO `pt_menu_directory` VALUES ('28', '保证金解冻审批', '2', '9', '1', 'zh_CN', '28', '0');
-INSERT INTO `pt_menu_directory` VALUES ('29', '供应商管理', '1', 'root', '0', 'zh_CN', '29', '0');
-INSERT INTO `pt_menu_directory` VALUES ('30', '查看合作供应商', '2', '29', '1', 'zh_CN', '30', '0');
-INSERT INTO `pt_menu_directory` VALUES ('31', '供应商申请待审核', '2', '29', '1', 'zh_CN', '31', '0');
-INSERT INTO `pt_menu_directory` VALUES ('32', '电厂申请审核', '2', '29', '1', 'zh_CN', '32', '0');
-INSERT INTO `pt_menu_directory` VALUES ('33', '年度评价', '2', '29', '1', 'zh_CN', '33', '0');
-INSERT INTO `pt_menu_directory` VALUES ('34', '采购审批', '2', '17', '1', 'zh_CN', '34', '0');
-INSERT INTO `pt_menu_directory` VALUES ('35', '中标下达', '2', '21', '1', 'zh_CN', '35', '0');
-INSERT INTO `pt_menu_directory` VALUES ('36', '中标审核', '2', '21', '1', 'zh_CN', '36', '0');
-INSERT INTO `pt_menu_directory` VALUES ('37', '查看供应商', '2', '29', '1', 'zh_CN', '37', '0');
-INSERT INTO `pt_menu_directory` VALUES ('38', '供应商审核', '2', '29', '1', 'zh_CN', '38', '0');
-INSERT INTO `pt_menu_directory` VALUES ('39', '电厂申请审核', '2', '29', '1', 'zh_CN', '39', '0');
-INSERT INTO `pt_menu_directory` VALUES ('40', '月度评分', '2', '29', '1', 'zh_CN', '40', '0');
-INSERT INTO `pt_menu_directory` VALUES ('41', '供应关系查看', '2', '29', '1', 'zh_CN', '41', '0');
-INSERT INTO `pt_menu_directory` VALUES ('42', '平台用户管理', '2', '29', '1', 'zh_CN', '42', '0');
-INSERT INTO `pt_menu_directory` VALUES ('43', '黑名单管理', '2', '29', '1', 'zh_CN', '43', '0');
-INSERT INTO `pt_menu_directory` VALUES ('44', '年度评价', '2', '29', '1', 'zh_CN', '44', '0');
-INSERT INTO `pt_menu_directory` VALUES ('45', '供应商账户查询', '2', '9', '1', 'zh_CN', '45', '0');
-INSERT INTO `pt_menu_directory` VALUES ('46', '保证金台账', '2', '9', '1', 'zh_CN', '46', '0');
-INSERT INTO `pt_menu_directory` VALUES ('47', '保证金收退款', '2', '9', '1', 'zh_CN', '47', '0');
+INSERT INTO `pt_menu_directory` VALUES ('1', '事务中心', '2', '3', '0', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('2', '待办事项', '3', '1', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('3', '采购信息', '1', '-1', '0', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('4', '采购申请查看', '2', '3', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('5', '采购执行查看', '2', '3', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('6', '报价管理', '1', '-1', '0', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('7', '参与报价', '2', '6', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('8', '报价结果', '2', '6', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('9', '保证金管理', '1', '-1', '0', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('10', '保证金账户台账', '2', '9', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('11', '保证金使用明细', '2', '9', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('12', '汇款凭证录入', '2', '9', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('13', 'test', '3', '1', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('14', '履约保证金台账', '2', '9', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('15', '供应资格管理', '1', '-1', '0', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('16', '注册对象管理', '2', '15', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('17', '采购申请管理', '1', '-1', '0', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('18', '采购需求创建', '2', '17', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('19', '采购审核', '2', '17', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('20', '采购申请查询', '2', '17', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('21', '采购执行报批', '1', '-1', '0', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('22', '采购执行查询', '2', '21', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('23', '长协交易', '1', '-1', '0', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('24', '长协交易查看', '2', '23', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('25', '长协交易创建', '2', '23', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('26', '报价保证金明细', '2', '9', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('27', '履约保证金明细', '2', '9', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('28', '保证金解冻审批', '2', '9', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('29', '供应商管理', '1', '-1', '0', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('30', '查看合作供应商', '2', '29', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('31', '供应商申请待审核', '2', '29', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('32', '电厂申请审核', '2', '29', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('33', '年度评价', '2', '29', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('34', '采购审批', '2', '17', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('35', '中标下达', '2', '21', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('36', '中标审核', '2', '21', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('37', '查看供应商', '2', '29', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('38', '供应商审核', '2', '29', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('39', '电厂申请审核', '2', '29', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('40', '月度评分', '2', '29', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('41', '供应关系查看', '2', '29', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('42', '平台用户管理', '2', '29', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('43', '黑名单管理', '2', '29', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('44', '年度评价', '2', '29', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('45', '供应商账户查询', '2', '9', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('46', '保证金台账', '2', '9', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('47', '保证金收退款', '2', '9', '1', 'zh_CN', '0');
+INSERT INTO `pt_menu_directory` VALUES ('51', '嘻嘻哈哈', '1', '-1', '0', 'zh_CN', '1');
 
 -- ----------------------------
 -- Table structure for pt_organ

@@ -41,7 +41,8 @@
 				showColumns : true,
 				showRefresh : true,
 				clickToSelect : true,
-				uniqueId : "res_uuid",
+				/* uniqueId : "res_uuid", */
+				uniqueId : "menu_id",
 				columns : [ { checkbox : true,  visible: true }, 
 							{ field : 'menu_id', title : '菜单目录号' },
 							{ field : 'dir_name', title : '菜单名称' },
@@ -66,7 +67,7 @@
 					toastr.info('请选择一条数据进行数据编辑操作!');
 					return;
 				}
-				window.parent.openIframe('${pageContext.request.contextPath}/res/updateResource.jsp?id=' + resources[0].res_uuid);
+				window.parent.openIframe('${pageContext.request.contextPath}/res/updateResource.jsp?id=' + resources[0].menu_id);
 			});			
 			
 			$('#btn_delete').click(function(){
@@ -76,7 +77,7 @@
 					toastr.info('请选择一条数据进行数据编辑操作!');
 					return;
 				}
-				window.parent.openModel('${pageContext.request.contextPath}/deleteModal.jsp?id=' + resources[0].res_uuid + '&type=res');
+				window.parent.openModel('${pageContext.request.contextPath}/deleteModal.jsp?id=' + resources[0].menu_id + '&type=res');
 			});			
 		});
 		window.parent.setMainDivHeight(0);

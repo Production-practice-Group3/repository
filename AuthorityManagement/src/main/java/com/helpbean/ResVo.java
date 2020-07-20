@@ -14,7 +14,7 @@ public class ResVo {
 
 	private String locale;
 	
-	private Integer res_uuid;
+	/*private Integer res_uuid;*/
 	
 	PtMenuDirectory parent;
 
@@ -66,13 +66,13 @@ public class ResVo {
 		this.parent = parent;
 	}
 
-	public Integer getRes_uuid() {
+	/*public Integer getRes_uuid() {
 		return res_uuid;
 	}
 
 	public void setRes_uuid(Integer res_uuid) {
 		this.res_uuid = res_uuid;
-	}
+	}*/
 
 	
 

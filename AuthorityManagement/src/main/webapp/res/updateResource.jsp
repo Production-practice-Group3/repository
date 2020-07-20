@@ -22,7 +22,7 @@
 		<!-- panel-heading -->
 		<div class="panel-body nopadding">
 			<form id="resForm" method="post" class="form-bordered">
-				<input id="res_uuid" name="res_uuid" type="hidden" value="<%=request.getParameter("id")%>">
+				<input id="menu_id" name="menu_id" type="hidden" value="<%=request.getParameter("id")%>">
 				<div class="form-group">
 					<label class="col-sm-4 control-label">菜单名称</label>
 					<div class="col-sm-8">
@@ -34,7 +34,7 @@
 					<div class="col-sm-8">
 						<div class="input-group mb15">
 							<input id="parent_name" class="form-control" type="text" name="parent_name" placeholder="请选择父菜单信息"/>
-							<input id="parent_id" type="hidden" name="parent_id"/>
+						    <input id="parent_id" type="hidden" name="parent_id"/>
 							<span class="input-group-addon" data-toggle="modal" data-target="#resTree"><i class="fa fa-paper-plane"></i></span> 
 						</div>
 					</div>
@@ -95,16 +95,16 @@
 			};
 			
 			//初始化页面
-			$.get('${pageContext.request.contextPath}/res/getResource', {uuid : $('#res_uuid').val()}, function (res) {
+			$.get('${pageContext.request.contextPath}/res/getResource', {uuid : $('#menu_id').val()}, function (res) {
 				debugger;
-				$('#res_url').val(res.res_url);
-				$('#dir_code').val(res.dir_code);
+				/* $('#res_url').val(res.res_url); */
+				/* $('#dir_code').val(res.dir_code); */
 				$('#dir_name').val(res.dir_name);
-				$('#dir_level_number').val(res.dir_level_number);
-				$('#parent_id').val(res.parent_id);
-				$('#parent_name').val(res.parent.dir_name);
+				/* $('#dir_level_number').val(res.dir_level_number); */
+				$('#parent_id').val(res.parent.menuId);
+				$('#parent_name').val(res.parent.dirName);
 				$('input:radio[name=isitem]')[res.isitem].checked = true;
-				$('#dir_order').val(res.dir_order);
+				/* $('#dir_order').val(res.dir_order); */
 			}, "json");
 			
 		});
@@ -117,9 +117,8 @@
 					if(data == 1){
 						toastr.success('<strong>成功&nbsp;! </strong>&nbsp;&nbsp;请到数据列表进行查看。');
 					}else{
-						toastr.error('<strong>失败&nbsp;! </strong>&nbsp;&nbsp;请检查数据正确性或联系管理员。');
+						toastr.error('<strong>失败&nbsp;! </strong>&nbsp;&nbsp;请仔细检查信息或联系管理员。');
 					}
-					
 					setTimeout(function(){
 						window.location.href='${pageContext.request.contextPath}/res/resources.jsp';
 					}, 11000);

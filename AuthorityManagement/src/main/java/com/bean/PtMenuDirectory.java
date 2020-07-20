@@ -7,13 +7,13 @@ public class PtMenuDirectory {
 
     private Integer dirLevelNumber;
 
-    private String parentId;
+    private Integer parentId;
 
     private String isitem;
 
     private String locale;
 
-    private Integer resUuid;
+   // private Integer resUuid;
     
     private String status;
 
@@ -41,11 +41,11 @@ public class PtMenuDirectory {
 		this.dirLevelNumber = dirLevelNumber;
 	}
 
-	public String getParentId() {
+	public Integer getParentId() {
 		return parentId;
 	}
 
-	public void setParentId(String parentId) {
+	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
 	}
 
@@ -65,13 +65,13 @@ public class PtMenuDirectory {
 		this.locale = locale;
 	}
 
-	public Integer getResUuid() {
+	/*public Integer getResUuid() {
 		return resUuid;
 	}
 
 	public void setResUuid(Integer resUuid) {
 		this.resUuid = resUuid;
-	}
+	}*/
 
 	public String getStatus() {
 		return status;

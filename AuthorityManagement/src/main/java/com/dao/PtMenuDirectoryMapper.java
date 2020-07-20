@@ -42,4 +42,14 @@ public interface PtMenuDirectoryMapper {
      * @return
      */
     int updateStatus(@Param("status")String status,@Param("menuId")Integer menuId);
+    
+    /**
+     * 查询所有菜单名称
+     */
+    List<String> selectMenuName();
+    
+    /**
+     * 修改level
+     */
+    int updateLevelById(@Param("dirLevelNumber")Integer dirLevelNumber,@Param("menuId")Integer menuId);
 }

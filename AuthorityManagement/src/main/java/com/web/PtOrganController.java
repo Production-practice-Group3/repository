@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bean.PtTree;
 import com.bean.PtOrgan;
 import com.bean.PtPageBean;
 import com.helpbean.OrgansVO;
@@ -76,5 +77,15 @@ public class PtOrganController {
     public int removeOrgan(int id){
     	int result = PtOrganService.removeOrgan(id);
     	return result;
+    }
+    /**
+     *组织树 
+     * @return
+     */
+    @RequestMapping(value="/getOrgsByParentId",method=RequestMethod.GET)
+    @ResponseBody
+    public PtTree toTree(){
+    	PtTree tree = PtOrganService.buildOrgTree();
+    	return tree;
     }
 }

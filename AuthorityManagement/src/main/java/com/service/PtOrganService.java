@@ -1,5 +1,9 @@
 package com.service;
 
+import com.bean.PtTree;
+
+import java.util.List;
+
 import com.bean.PtOrgan;
 import com.bean.PtPageBean;
 import com.helpbean.OrgansVO;
@@ -40,5 +44,10 @@ public interface PtOrganService {
 	 * @return
 	 */
 	int removeOrgan(Integer uuid);
-	
+	/**
+	 * 建立组织树
+	 * @return
+	 */
+	PtTree buildOrgTree();
+	List<PtTree> buildChild(int id);
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bean.PtTree;
 import com.bean.PtOrgan;
 import com.bean.PtPageBean;
 import com.bean.PtRRoleOrgan;
@@ -62,7 +63,6 @@ public class PtOrganServiceImpl implements PtOrganService{
 	@Override
 	public int insertOrgan(PtOrgan org) {
 		Date day=new Date();
-		org.setParentUuid(8);//用于测试，需修改
 		int parentID = org.getParentUuid();
 		String count ="2";//级数至少为2
 		int parseInt = 2;
@@ -99,15 +99,14 @@ public class PtOrganServiceImpl implements PtOrganService{
 	 */
 	@Override
 	public int updateOrgan(PtOrgan organ) {
-		//organ.setStatus("N");
 		Date day=new Date();
 		organ.setModtime(day);
-		organ.setParentUuid(10);//用于测试，需修改
 		int parentID = organ.getParentUuid();
 		String count ="2";//级数至少为2
 		int parseInt = 2;
+		PtOrgan org = new PtOrgan();
 		if(parentID != -1) {
-			PtOrgan org=ptOrganMapper.selectByPrimaryKey(parentID);
+			org = ptOrganMapper.selectByPrimaryKey(parentID);
 			count = org.getOrganType();
 			parseInt = Integer.parseInt(count);
 			parseInt++;
@@ -115,13 +114,9 @@ public class PtOrganServiceImpl implements PtOrganService{
 		}
 		organ.setOrganType(count);
 		int res = ptOrganMapper.updateByPrimaryKeySelective(organ);
-		parseInt++;
-		count= String.valueOf(parseInt);
 		List<PtOrgan> orgs = ptOrganMapper.findChildAll(organ.getOrganUuid());
-		for(PtOrgan org:orgs) {
-			org.setOrganType(count);
-			org.setModtime(day);
-			ptOrganMapper.updateByPrimaryKey(org);
+		for(PtOrgan o:orgs) {
+			updateOrgan(o);
 		}
 		return res;
 	}
@@ -137,8 +132,44 @@ public class PtOrganServiceImpl implements PtOrganService{
 		int res = ptOrganMapper.removeByPrimaryKey(uuid);
 		List<PtOrgan> orgs = ptOrganMapper.findChildAll(uuid);
 		for(PtOrgan org:orgs) {
-			ptOrganMapper.removeByPrimaryKey(org.getOrganUuid());
+			removeOrgan(org.getOrganUuid());
 		}
 		return res;
+	}
+	
+	/**
+	 * 建立组织树
+	 * @return
+	 */
+	public PtTree buildOrgTree(){
+		PtTree tree = new PtTree();
+		tree.setId(-1);
+		tree.setName("国电集团");
+		List<PtOrgan> org=ptOrganMapper.findChildAll(-1);
+		tree.setChildren(buildChild(-1));
+		if(org.size() != 0) {
+			tree.setHasChildren(true);	
+		}else {
+			tree.setHasChildren(false);
+		}
+		return tree;
+	}
+	
+	public List<PtTree> buildChild(int id) {
+		List<PtOrgan> org=ptOrganMapper.findChildAll(id);
+		List<PtTree> list=new ArrayList<PtTree>();
+		for(PtOrgan o:org) {
+			PtTree tree = new PtTree();
+			tree.setId(o.getOrganUuid());
+			tree.setName(o.getOrganName());
+			tree.setChildren(buildChild(o.getOrganUuid()));
+			if(tree.getChildren().size() != 0) {
+				tree.setHasChildren(true);	
+			}else {
+				tree.setHasChildren(false);
+			}
+			list.add(tree);
+		}
+		return list;
 	}
 }

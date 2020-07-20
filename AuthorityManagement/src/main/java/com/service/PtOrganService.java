@@ -2,6 +2,7 @@ package com.service;
 
 import com.bean.PtTree;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bean.PtOrgan;
@@ -37,6 +38,12 @@ public interface PtOrganService {
 	 * @return
 	 */
 	int updateOrgan(PtOrgan organ);
+	/**
+	 * 修改组织信息
+	 * @param organ
+	 * @return
+	 */
+	int update(PtOrgan organ);
 	
 	/**
 	 * 删除组织信息
@@ -44,6 +51,22 @@ public interface PtOrganService {
 	 * @return
 	 */
 	int removeOrgan(Integer uuid);
+	
+	/**
+	 * 判断是否可修改id1的父组织为id2
+	 * @param id1
+	 * @param id2
+	 * @return
+	 */
+	int check(int id1,int id2);
+	
+	/**
+	 * 找到所有的下层节点
+	 * @param id
+	 * @return
+	 */
+	ArrayList<Integer> findChild(ArrayList<Integer> id);
+	
 	/**
 	 * 建立组织树
 	 * @return

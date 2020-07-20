@@ -42,8 +42,12 @@ public class PtOrganServiceImpl implements PtOrganService{
 			organs.setOrganUuid(o.getOrganUuid());
 			organs.setOrganCode(o.getOrganCode());
 			organs.setOrganName(o.getOrganName());
-			String pn = ptOrganMapper.getParentName(o);
-			organs.setParentName(pn);
+			if(o.getParentUuid()==-1) {
+				organs.setParentName("国电集团");
+			}else {
+				String pn = ptOrganMapper.getParentName(o);
+				organs.setParentName(pn);
+			}
 			organs.setShortname(o.getShortname());
 			organs.setModtime(o.getModtime());
 			orglist.add(organs);
@@ -75,8 +79,8 @@ public class PtOrganServiceImpl implements PtOrganService{
 		org.setOrganType(String.valueOf(parseInt));
 		org.setStatus("N");
 		org.setModtime(day);
-		ptOrganMapper.insertSelective(org);
-		return 1;
+		int res = ptOrganMapper.insertSelective(org);
+		return res;
 	}
 
 	/**
@@ -87,8 +91,12 @@ public class PtOrganServiceImpl implements PtOrganService{
     @Override
 	public PtOrgan selectByPrimaryKey(Integer uuid) {
     	PtOrgan organ=ptOrganMapper.selectByPrimaryKey(uuid);
-    	String pn = ptOrganMapper.getParentName(organ);
-		organ.setParentName(pn);
+    	if(organ.getParentUuid()==-1) {
+			organ.setParentName("国电集团");
+		}else {
+			String pn = ptOrganMapper.getParentName(organ);
+			organ.setParentName(pn);
+		}
     	return organ;
 	}
 	
@@ -99,13 +107,31 @@ public class PtOrganServiceImpl implements PtOrganService{
 	 */
 	@Override
 	public int updateOrgan(PtOrgan organ) {
-		Date day=new Date();
-		organ.setModtime(day);
 		int parentID = organ.getParentUuid();
-		String count ="2";//级数至少为2
+		int flag = check(organ.getOrganUuid(),parentID);
+		if(flag != -1) {
+			int res = update(organ);
+			return res;
+		}
+		else {
+			return 2;
+		}	
+	}
+	
+	/**
+	 * 修改组织信息
+	 * @param organ
+	 * @return
+	 */
+	@Override
+	public int update(PtOrgan organ) {
+		int parentID = organ.getParentUuid();
+		Date day = new Date();
+		organ.setModtime(day);
+		String count = "2";// 级数至少为2
 		int parseInt = 2;
 		PtOrgan org = new PtOrgan();
-		if(parentID != -1) {
+		if (parentID != -1) {
 			org = ptOrganMapper.selectByPrimaryKey(parentID);
 			count = org.getOrganType();
 			parseInt = Integer.parseInt(count);
@@ -113,14 +139,14 @@ public class PtOrganServiceImpl implements PtOrganService{
 			count = String.valueOf(parseInt);
 		}
 		organ.setOrganType(count);
-		int res = ptOrganMapper.updateByPrimaryKeySelective(organ);
+		ptOrganMapper.updateByPrimaryKeySelective(organ);
 		List<PtOrgan> orgs = ptOrganMapper.findChildAll(organ.getOrganUuid());
-		for(PtOrgan o:orgs) {
-			updateOrgan(o);
+		for (PtOrgan o : orgs) {
+			update(o);
 		}
-		return res;
+		return 1;
 	}
-
+	
 	/**
 	 * 删除组织信息
 	 * @param uuid
@@ -135,6 +161,36 @@ public class PtOrganServiceImpl implements PtOrganService{
 			removeOrgan(org.getOrganUuid());
 		}
 		return res;
+	}
+	
+	/**
+	 * 判断是否可修改id1的父组织为id2
+	 * @param id1
+	 * @param id2
+	 * @return
+	 */
+	public int check(int id1,int id2) {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		list.add(id1);
+		list = findChild(list);
+		for(Integer l:list) {
+			if(l == id2) {
+				return -1;
+			}
+		}
+		return list.size();
+	}
+	
+	
+	public ArrayList<Integer> findChild(ArrayList<Integer> id){
+		int length = id.size();
+		int root = id.get(length-1);
+		List<PtOrgan> orgs = ptOrganMapper.findChildAll(root);
+		for(PtOrgan org:orgs) {
+			id.add(org.getOrganUuid());
+			findChild(id);
+		}
+		return id;
 	}
 	
 	/**

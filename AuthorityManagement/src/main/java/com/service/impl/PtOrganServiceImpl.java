@@ -66,7 +66,6 @@ public class PtOrganServiceImpl implements PtOrganService{
      */
 	@Override
 	public int insertOrgan(PtOrgan org) {
-		Date day=new Date();
 		int parentID = org.getParentUuid();
 		String count ="2";//级数至少为2
 		int parseInt = 2;
@@ -78,7 +77,6 @@ public class PtOrganServiceImpl implements PtOrganService{
 		}
 		org.setOrganType(String.valueOf(parseInt));
 		org.setStatus("N");
-		org.setModtime(day);
 		int res = ptOrganMapper.insertSelective(org);
 		return res;
 	}
@@ -126,8 +124,6 @@ public class PtOrganServiceImpl implements PtOrganService{
 	@Override
 	public int update(PtOrgan organ) {
 		int parentID = organ.getParentUuid();
-		Date day = new Date();
-		organ.setModtime(day);
 		String count = "2";// 级数至少为2
 		int parseInt = 2;
 		PtOrgan org = new PtOrgan();

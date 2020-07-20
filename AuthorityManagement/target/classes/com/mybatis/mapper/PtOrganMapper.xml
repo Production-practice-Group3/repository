@@ -154,7 +154,7 @@
 	limit #{startIndex},#{pageSize}
   </select>
   <select id="getOrganCount" resultType="int">
-    select count(*) from pt_organ;
+    select count(*) from pt_organ where status='N';
   </select>
   <update id="removeByPrimaryKey" parameterType="java.lang.Integer">
     update pt_organ

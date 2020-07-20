@@ -2,10 +2,10 @@ package com.bean;
 
 import java.util.List;
 
-public class PtTree<T> {
+public class PtTree {
 	private int id;
 	private String name;
-	private List<T> children;
+	private List<PtTree> children;
 	private boolean hasChildren;
 	public int getId() {
 		return id;
@@ -19,10 +19,10 @@ public class PtTree<T> {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<T> getChildren() {
+	public List<PtTree> getChildren() {
 		return children;
 	}
-	public void setChildren(List<T> children) {
+	public void setChildren(List<PtTree> children) {
 		this.children = children;
 	}
 	public boolean isHasChildren() {

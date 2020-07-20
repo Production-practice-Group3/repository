@@ -5,7 +5,7 @@ public class PtRoleRes {
 
     private Integer roleUuid;
 
-    private Integer resUuid;
+    private String resUuid;
 
     public Integer getRoleResid() {
         return roleResid;
@@ -23,11 +23,11 @@ public class PtRoleRes {
         this.roleUuid = roleUuid;
     }
 
-    public Integer getResUuid() {
+    public String getResUuid() {
         return resUuid;
     }
 
-    public void setResUuid(Integer resUuid) {
+    public void setResUuid(String resUuid) {
         this.resUuid = resUuid;
     }
 }

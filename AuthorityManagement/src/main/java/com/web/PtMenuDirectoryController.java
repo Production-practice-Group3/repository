@@ -66,7 +66,7 @@ public class PtMenuDirectoryController {
 	 * @param resvo
 	 * @return
 	 */
-	@RequestMapping(value="update",method=RequestMethod.POST)
+	@RequestMapping(value="/update",method=RequestMethod.POST)
 	@ResponseBody
 	public int update(String dir_name,String parent_name,int parent_id,String isitem,int menu_id) {
 		int data = resService.update(dir_name,parent_id,isitem,menu_id);
@@ -77,7 +77,7 @@ public class PtMenuDirectoryController {
 	/**
 	 * 资源树
 	 */
-	@RequestMapping(value="getResourcesByParentId",method=RequestMethod.GET)
+	@RequestMapping(value="/getResourcesByParentId",method=RequestMethod.GET)
 	@ResponseBody
 	public PtTree getResourcesByParentId(){
 		PtTree tree = resService.getResourcesByParentId();

@@ -19,7 +19,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">组织树</h4>
+					<h4 class="modal-title" id="myModalLabel">资源树</h4>
 				</div>
 				<div class="modal-body">
 					<input id="roleId" type="hidden">
@@ -114,7 +114,6 @@
             		roleId : $('#roleId').val(),
             		resources : cks
             };
-            
             toastr.options = {
     				positionClass : "toast-center-center",
     				showMethod : "fadeIn",

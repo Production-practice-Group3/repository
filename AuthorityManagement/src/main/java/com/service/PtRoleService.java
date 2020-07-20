@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.bean.PtPageBean;
 import com.bean.PtRole;
+import com.bean.PtRoleRes;
+import com.helpbean.RoleResVO;
 import com.helpbean.RolesVO;
 
 public interface PtRoleService {
@@ -27,4 +29,10 @@ public interface PtRoleService {
     //根据id获取角色信息
     public PtRole getRole(int uuid);
 
+    //保存关联资源
+    public int linkResource(RoleResVO roleRes);
+    
+    //获得关联资源
+    public List<String> getResource(int id);
+    
 }

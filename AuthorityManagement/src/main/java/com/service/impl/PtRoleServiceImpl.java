@@ -7,12 +7,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bean.PtOrgan;
 import com.bean.PtPageBean;
-import com.bean.PtRRoleOrgan;
 import com.bean.PtRole;
+import com.bean.PtRoleRes;
 import com.dao.PtRoleMapper;
-import com.helpbean.DutiesVO;
+import com.helpbean.RoleResVO;
 import com.helpbean.RolesVO;
 import com.service.PtRoleService;
 
@@ -76,17 +75,30 @@ public class PtRoleServiceImpl implements PtRoleService{
 	
 	//根据id获取角色信息
 	public PtRole getRole(int uuid) {
-		PtRole ptRole=new PtRole();
-		PtRole ptRoles=ptRoleMapper.selectByPrimaryKey(uuid);
-		ptRole.setRoleUuid(ptRoles.getRoleUuid());
-		ptRole.setRoleId(ptRoles.getRoleId());
-		ptRole.setRoleName(ptRoles.getRoleName());
-		return ptRole;
+		return ptRoleMapper.selectByPrimaryKey(uuid);
 	}
 
-	
-
-	
-	
-
+	//保存关联资源
+    public int linkResource(RoleResVO roleRes) {
+    	ptRoleMapper.deleteResourceByRoleId(roleRes.getRoleId());
+    	String[] s=roleRes.getResources().split(",");
+    	PtRoleRes ptRoleRes=new PtRoleRes();
+    	for(int i=1;i<s.length;i++) {
+    		
+    		ptRoleRes.setRoleUuid(roleRes.getRoleId());
+    		ptRoleRes.setResUuid(s[i]);
+    		ptRoleMapper.linkResource(ptRoleRes);
+    	}
+		return 1;
+    }
+    
+  //获得关联资源
+    public List<String> getResource(int id){
+    	List<PtRoleRes> ptRoleRes=ptRoleMapper.getResource(id);
+    	List<String> list=new ArrayList<String>();
+    	for(PtRoleRes p:ptRoleRes) {
+    		list.add(p.getResUuid());
+    	}
+		return list;
+    }
 }

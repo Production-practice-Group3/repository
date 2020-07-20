@@ -6,6 +6,11 @@
     <result column="role_id" jdbcType="VARCHAR" property="roleId" />
     <result column="role_name" jdbcType="VARCHAR" property="roleName" />
   </resultMap>
+  <resultMap id="BaseRoleRes" type="com.bean.PtRoleRes">
+    <id column="role_resid" jdbcType="INTEGER" property="roleResid" />
+    <result column="role_uuid" jdbcType="INTEGER" property="roleUuid" />
+    <result column="res_uuid" jdbcType="INTEGER" property="resUuid" />
+  </resultMap>
   <sql id="Base_Column_List">
     role_uuid, role_id, role_name
   </sql>
@@ -82,5 +87,19 @@
   <select id="getRoleCount" resultType="int">
   	select count(*) from pt_role;
   </select>
+  
+  <select id="getResource" parameterType="int" resultMap="BaseRoleRes">
+  	select * from pt_role_res where role_uuid=#{id}
+  </select>
+  
+  <insert id="linkResource" parameterType="com.bean.PtRoleRes">
+  	insert into pt_role_res(role_uuid,res_uuid)
+  	value(#{roleUuid},#{resUuid})
+  </insert>
+  
+  <delete id="deleteResourceByRoleId" parameterType="int">
+  	delete from pt_role_res
+  	where role_uuid=#{roleId}
+  </delete>
   
 </mapper>

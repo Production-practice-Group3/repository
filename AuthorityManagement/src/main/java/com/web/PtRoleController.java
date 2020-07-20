@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.bean.PtPageBean;
 import com.bean.PtRole;
+import com.bean.PtRoleRes;
+import com.helpbean.RoleResVO;
 import com.helpbean.RolesVO;
 import com.service.PtRoleService;
 
@@ -62,6 +64,20 @@ public class PtRoleController {
 	@ResponseBody
 	public int deletePtRole(int id) {
 		return ptRoleService.deletePtRole(id);
+	}
+	
+	//保存分配的资源
+	@RequestMapping(value="/linkResource" ,method = RequestMethod.GET)
+	@ResponseBody
+	public int linkResource(RoleResVO roleRes) {
+		return ptRoleService.linkResource(roleRes);
+	}
+	
+	//获取分配的资源
+	@RequestMapping(value="/getResources" ,method = RequestMethod.GET)
+	@ResponseBody
+	public List<String> getResource(int roleId) {
+		return ptRoleService.getResource(roleId);
 	}
 	
 }

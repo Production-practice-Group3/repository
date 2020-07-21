@@ -87,11 +87,6 @@ public class PtDutyController {
 	@ResponseBody
 	public List<PtRRoleOrgan> getDutyByOrganId(int organId){
 		List<PtRRoleOrgan> roleOrgans=dutyService.getDutyByOrganId(organId);
-		int i=0;
-		for(PtRRoleOrgan duty: roleOrgans) {
-		i++;
-		System.out.println(i+"..........."+duty.getDutyid()+"???"+duty.getName());
-		}
 		return roleOrgans;
 	}
 }

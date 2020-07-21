@@ -138,10 +138,7 @@ public class PtMenuDirectoryServiceImpl implements PtMenuDirectoryService {
 		ptmd.setMenuId(uuid);
 		List<String> names = ptMenuDirectoryMapper.selectMenuName();
 		for (String name : names) {
-			int count = 0;
-			if (dir_name.equals(name))
-				count++;
-			if (count > 1)
+			if (dir_name.equals(name) && !dir_name.equals(ptMenuDirectoryMapper.selectByPrimaryKey(uuid).getDirName()))
 				return -1;
 		}
 		ptmd.setDirName(dir_name);

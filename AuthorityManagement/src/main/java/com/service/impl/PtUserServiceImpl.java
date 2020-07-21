@@ -154,8 +154,8 @@ public class PtUserServiceImpl implements PtUserService{
     	u.setStatus("N");
     	ptUserMapper.updateByPrimaryKey(u);
     	//岗位关联表更新操作
+	ptRUserDutyOrgMapper.deleteByUserid(record.getUserUuid());
     	if(record.getDuties()!=null) {//用户已分配岗位
-    		ptRUserDutyOrgMapper.deleteByUserid(record.getUserUuid());
     		for(int i=0;i<record.getDuties().size();i++) {
     			PtRRoleOrgan duty=record.getDuties().get(i);
     			if(duty.getDutyid()!=null) {

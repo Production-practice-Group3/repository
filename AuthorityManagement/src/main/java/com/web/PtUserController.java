@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bean.PtPageBean;
 import com.bean.PtRRoleOrgan;
+import com.bean.PtRUserDutyOrg;
 import com.bean.PtUser;
 import com.dao.PtUserMapper;
 import com.helpbean.DutiesVO;

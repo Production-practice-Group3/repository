@@ -15,6 +15,8 @@ public interface PtUserMapper {
 
     PtUser selectByPrimaryKey(Integer userUuid);
     
+    PtUser selectByUser(UsersVO record);//根据用户查询
+    
     PtUser selectByUsername(String username);//根据用户名查询
     /**
      * 获取分页用户信息

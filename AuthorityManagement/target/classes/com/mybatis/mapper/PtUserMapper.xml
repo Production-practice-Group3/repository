@@ -31,6 +31,13 @@
     where username = #{username,jdbcType=VARCHAR} and status='N'
   </select>
   
+  <select id="selectByUser" parameterType="com.helpbean.UsersVO" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pt_user
+    where user_uuid != #{userUuid,jdbcType=INTEGER} and username = #{username,jdbcType=VARCHAR} and status='N'
+  </select>
+  
   <select id="selectByPage" resultMap="BaseResultMap" parameterType="map">
     select 
     <include refid="Base_Column_List" />

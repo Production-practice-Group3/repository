@@ -47,23 +47,28 @@ public class PtUserServiceImpl implements PtUserService{
     	PtUser u=new PtUser();
     	u.setUsername(record.getUsername());
     	u.setRemark(record.getRemark());
-    	u.setPassword(record.getRemark());
+    	u.setPassword(record.getPassword());
     	u.setOrganUuid(record.getOrgan().getOrganUuid());
     	u.setNiceName(record.getNiceName());
     	u.setMobile(record.getMobile());
     	u.setEmail(record.getEmail());
     	u.setStatus("N");
-    	
+    	ptUserMapper.insert(u);
     	//岗位关联表插入操作
     	if(record.getDuties()!=null) {//用户已分配岗位
-    		for(PtRRoleOrgan duty:record.getDuties()) {
+    		for(int i=0;i<record.getDuties().size();i++) {
+    			PtRRoleOrgan duty=record.getDuties().get(i);
+    			if(duty.getDutyid()!=null) {
+    			
         		PtRUserDutyOrg r=new PtRUserDutyOrg();
         		r.setDutyid(duty.getDutyid());
-        		r.setUserUuid(record.getUserUuid());
+        		 
+        		r.setUserUuid(ptUserMapper.selectByUsername(u.getUsername()).getUserUuid());
         		ptRUserDutyOrgMapper.insert(r);
+    			}
         	}
     	}
-    	ptUserMapper.insert(u);
+    	
     	return 1;
 	}
     /**
@@ -134,34 +139,37 @@ public class PtUserServiceImpl implements PtUserService{
     			(record.getPassword()==null||record.getPassword().trim()=="")) {//修改用户名密码为空
     		return 3;
     	}
-    	if(ptUserMapper.selectByUsername(record.getUsername())!=null) {//判断用户名是否重名
+    	if(ptUserMapper.selectByUser(record)!=null) {//判断用户名是否重名
     		return 2;//重名
     	}
     	PtUser u=new PtUser();
     	u.setUserUuid(record.getUserUuid());
     	u.setUsername(record.getUsername());
     	u.setRemark(record.getRemark());
-    	u.setPassword(record.getRemark());
+    	u.setPassword(record.getPassword());
     	u.setOrganUuid(record.getOrgan().getOrganUuid());
     	u.setNiceName(record.getNiceName());
     	u.setMobile(record.getMobile());
     	u.setEmail(record.getEmail());
     	u.setStatus("N");
+    	ptUserMapper.updateByPrimaryKey(u);
     	//岗位关联表更新操作
     	if(record.getDuties()!=null) {//用户已分配岗位
     		ptRUserDutyOrgMapper.deleteByUserid(record.getUserUuid());
-        	for(PtRRoleOrgan duty:record.getDuties()) {
-        		
+    		for(int i=0;i<record.getDuties().size();i++) {
+    			PtRRoleOrgan duty=record.getDuties().get(i);
+    			if(duty.getDutyid()!=null) {
         		PtRUserDutyOrg r=new PtRUserDutyOrg();
         		r.setDutyid(duty.getDutyid());
         		r.setUserUuid(record.getUserUuid());
         		ptRUserDutyOrgMapper.insert(r);
         		
         		//ptRUserDutyOrgMapper.updateByUserid(record.getUserUuid(), duty.getDutyid());
+    			}
         	}
     	}
     	
-    	ptUserMapper.updateByPrimaryKey(u);
+    	
 		return 1;
 	}
 

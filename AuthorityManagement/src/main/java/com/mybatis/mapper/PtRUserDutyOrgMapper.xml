@@ -40,12 +40,14 @@
     delete from pt_r_user_duty_org
     where user_uuid = #{userid,jdbcType=INTEGER}
   </delete>
+  
   <insert id="insert" parameterType="com.bean.PtRUserDutyOrg">
     insert into pt_r_user_duty_org (user_dutyid, user_uuid, dutyid
       )
     values (#{userDutyid,jdbcType=INTEGER}, #{userUuid,jdbcType=INTEGER}, #{dutyid,jdbcType=INTEGER}
       )
   </insert>
+  
   <insert id="insertSelective" parameterType="com.bean.PtRUserDutyOrg">
     insert into pt_r_user_duty_org
     <trim prefix="(" suffix=")" suffixOverrides=",">

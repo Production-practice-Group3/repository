@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2020-07-21 11:04:50
+Date: 2020-07-22 10:17:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -302,7 +302,7 @@ CREATE TABLE `pt_r_user_duty_org` (
   `user_uuid` int(50) DEFAULT NULL COMMENT '用户ID',
   `dutyid` int(50) NOT NULL COMMENT '岗位ID',
   PRIMARY KEY (`user_dutyid`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COMMENT='用户、岗位对应表';
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8 COMMENT='用户、岗位对应表';
 
 -- ----------------------------
 -- Records of pt_r_user_duty_org
@@ -316,14 +316,15 @@ INSERT INTO `pt_r_user_duty_org` VALUES ('25', '4', '20');
 INSERT INTO `pt_r_user_duty_org` VALUES ('33', '16', '1');
 INSERT INTO `pt_r_user_duty_org` VALUES ('34', '16', '2');
 INSERT INTO `pt_r_user_duty_org` VALUES ('35', '16', '3');
-INSERT INTO `pt_r_user_duty_org` VALUES ('46', '17', '7');
-INSERT INTO `pt_r_user_duty_org` VALUES ('47', '17', '9');
-INSERT INTO `pt_r_user_duty_org` VALUES ('48', '1', '1');
-INSERT INTO `pt_r_user_duty_org` VALUES ('49', '1', '9');
-INSERT INTO `pt_r_user_duty_org` VALUES ('50', '18', '7');
-INSERT INTO `pt_r_user_duty_org` VALUES ('51', '18', '10');
 INSERT INTO `pt_r_user_duty_org` VALUES ('52', '5', '2');
 INSERT INTO `pt_r_user_duty_org` VALUES ('53', '5', '3');
+INSERT INTO `pt_r_user_duty_org` VALUES ('56', '18', '15');
+INSERT INTO `pt_r_user_duty_org` VALUES ('59', '17', '22');
+INSERT INTO `pt_r_user_duty_org` VALUES ('60', '6', '7');
+INSERT INTO `pt_r_user_duty_org` VALUES ('61', '6', '10');
+INSERT INTO `pt_r_user_duty_org` VALUES ('62', '19', '1');
+INSERT INTO `pt_r_user_duty_org` VALUES ('63', '1', '19');
+INSERT INTO `pt_r_user_duty_org` VALUES ('64', '1', '20');
 
 -- ----------------------------
 -- Table structure for pt_user
@@ -342,17 +343,17 @@ CREATE TABLE `pt_user` (
   `modtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '操作时间',
   PRIMARY KEY (`user_uuid`),
   KEY `ak_key_2` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='用户';
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='用户';
 
 -- ----------------------------
 -- Records of pt_user
 -- ----------------------------
-INSERT INTO `pt_user` VALUES ('1', 'zhuren', '123', '1214099293@qq.com', '15586429906', '5', '陈主任', '', 'N', '2020-07-21 10:55:16');
+INSERT INTO `pt_user` VALUES ('1', 'zhuren', '123', '1224099293@qq.com', '15586429906', '9', '陈主任', '', 'N', '2020-07-22 10:02:07');
 INSERT INTO `pt_user` VALUES ('2', 'xiadewang', '12345', '2213098293@qq.com', '15709469906', '9', '夏德旺', '', 'N', '2020-07-21 11:03:44');
 INSERT INTO `pt_user` VALUES ('3', 'changzhang', '123456', '1135660243@qq.com', '13709549905', '10', '刘厂长', '', 'N', '2020-07-21 11:03:26');
 INSERT INTO `pt_user` VALUES ('4', 'xiaoming', '12345', '1800740063@qq.com', '17708519906', '9', '小明', '', 'N', '2020-07-21 11:03:29');
 INSERT INTO `pt_user` VALUES ('5', 'xiaohong', '111', '1207130061@qq.com', '15786519206', '5', '小红', '', 'N', '2020-07-21 11:03:33');
-INSERT INTO `pt_user` VALUES ('6', '6', '123', '', '', null, '6', '', 'N', '2020-07-21 10:29:07');
+INSERT INTO `pt_user` VALUES ('6', '6', '123', '', '', '5', '6', '', 'N', '2020-07-22 08:21:38');
 INSERT INTO `pt_user` VALUES ('7', '7', '123', null, null, null, '7', null, 'N', '2020-07-21 10:29:58');
 INSERT INTO `pt_user` VALUES ('8', '8', '123', null, null, null, '8', null, 'N', '2020-07-21 10:29:58');
 INSERT INTO `pt_user` VALUES ('9', '9', '123', null, null, null, '9', null, 'N', '2020-07-21 10:29:58');
@@ -363,5 +364,6 @@ INSERT INTO `pt_user` VALUES ('13', '13', '123', null, null, null, '13', null, '
 INSERT INTO `pt_user` VALUES ('14', '14', '123', null, null, null, '14', null, 'N', '2020-07-21 10:29:58');
 INSERT INTO `pt_user` VALUES ('15', '15', '123', null, null, null, '15', null, 'N', '2020-07-21 10:29:58');
 INSERT INTO `pt_user` VALUES ('16', 'test', '123', '', '', '5', 'test', '', 'N', '2020-07-21 10:32:35');
-INSERT INTO `pt_user` VALUES ('17', 'test2', '123', '', '', '5', 'test2', '', 'N', '2020-07-21 10:48:22');
-INSERT INTO `pt_user` VALUES ('18', 'test3', '123', '', '', '5', 'test3', '', 'N', '2020-07-21 10:53:03');
+INSERT INTO `pt_user` VALUES ('17', 'test2', '123', '', '', '10', 'test2', '', 'N', '2020-07-22 08:21:05');
+INSERT INTO `pt_user` VALUES ('18', 'test3', '123', '', '', '7', 'test3', '', 'O', '2020-07-22 08:19:41');
+INSERT INTO `pt_user` VALUES ('19', 'qqq', '123', '', '', '5', 'aaa', '', 'O', '2020-07-22 10:01:44');

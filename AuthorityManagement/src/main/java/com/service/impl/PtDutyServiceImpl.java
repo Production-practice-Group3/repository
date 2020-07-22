@@ -13,6 +13,7 @@ import com.bean.PtRRoleOrgan;
 import com.bean.PtRole;
 import com.dao.PtOrganMapper;
 import com.dao.PtRRoleOrganMapper;
+import com.dao.PtRUserDutyOrgMapper;
 import com.dao.PtRoleMapper;
 import com.helpbean.DutiesVO;
 import com.service.PtDutyService;
@@ -26,6 +27,8 @@ public class PtDutyServiceImpl implements PtDutyService {
 	private PtOrganMapper ptOrganMapper;
 	@Autowired
 	private PtRoleMapper ptRoleMapper;
+	@Autowired
+	private PtRUserDutyOrgMapper ptRUserDutyOrgMapper ;
 	/**
 	 * 分页展示的岗位列表
 	 * @return
@@ -116,8 +119,13 @@ public class PtDutyServiceImpl implements PtDutyService {
 	@Override
 	public int remove(int id) {
 		// TODO Auto-generated method stub
-		ptRRoleOrganMapper.deleteByPrimaryKey(id);
-		return 1;
+		List<PtRRoleOrgan> rRoleOrgans=ptRUserDutyOrgMapper.selectByDutyID(id);
+		int data=0;
+		if(rRoleOrgans.size()==0) {
+			ptRRoleOrganMapper.deleteByPrimaryKey(id);
+			data=1;
+		}
+		return data;
 	}
 
 	/**

@@ -21,4 +21,6 @@ public interface PtRUserDutyOrgMapper {
     int updateByPrimaryKeySelective(PtRUserDutyOrg record);
 
     int updateByPrimaryKey(PtRUserDutyOrg record);
+    
+    List<PtRRoleOrgan> selectByDutyID(Integer DutyID);//通过岗位id找岗位
 }
